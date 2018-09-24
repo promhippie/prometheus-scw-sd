@@ -48,7 +48,7 @@ Here you get a snippet for the Prometheus `scrape_config` that configures Promet
 ```
 - job_name: node
   file_sd_configs:
-  - files: [ "/etc/prometheus/hcloud.json" ]
+  - files: [ "/etc/prometheus/scw.json" ]
   relabel_configs:
   - source_labels: [__meta_scaleway_public_ipv4]
     replacement: "${1}:9100"
