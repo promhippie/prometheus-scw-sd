@@ -16,6 +16,50 @@ This project provides a server to automatically discover nodes within your Scale
 You can download prebuilt binaries from our [GitHub releases](https://github.com/promhippie/prometheus-scw-sd/releases), or you can use our Docker images published on [Docker Hub](https://hub.docker.com/r/promhippie/prometheus-scw-sd/tags/).
 
 
+## Integration
+
+### Available labels
+
+The following list of meta labels can be used to relabel your scrape results entirely. Hopefully the names are self-explaining, that's why I have skipped a description for each label.
+
+* `__meta_scaleway_name`
+* `__meta_scaleway_id`
+* `__meta_scaleway_arch`
+* `__meta_scaleway_image_id`
+* `__meta_scaleway_image_name`
+* `__meta_scaleway_public_ipv4`
+* `__meta_scaleway_state`
+* `__meta_scaleway_private_ipv4`
+* `__meta_scaleway_hostname`
+* `__meta_scaleway_org`
+* `__meta_scaleway_commercial_type`
+* `__meta_scaleway_platform`
+* `__meta_scaleway_hypervisor`
+* `__meta_scaleway_node`
+* `__meta_scaleway_blade`
+* `__meta_scaleway_chassis`
+* `__meta_scaleway_cluster`
+* `__meta_scaleway_zone`
+
+### Prometheus config
+
+Here you get a snippet for the Prometheus `scrape_config` that configures Prometheus to scrape `node_exporter` assuming that it is deployed on all your servers.
+
+```
+- job_name: node
+  file_sd_configs:
+  - files: [ "/etc/prometheus/hcloud.json" ]
+  relabel_configs:
+  - source_labels: [__meta_scaleway_public_ipv4]
+    replacement: "${1}:9100"
+    target_label: __address__
+  - source_labels: [__meta_scaleway_zone]
+    target_label: datacenter
+  - source_labels: [__meta_scaleway_name]
+    target_label: instance
+```
+
+
 ## Development
 
 Make sure you have a working Go environment, for further reference or a guide take a look at the [install instructions](http://golang.org/doc/install.html). This project requires Go >= v1.8.
