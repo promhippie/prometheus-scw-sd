@@ -1,6 +1,7 @@
 baseURL = "https://promhippie.github.io/prometheus-scw-sd/"
 languageCode = "en-us"
 title = "Prometheus Scaleway SD"
+pygmentsUseClasses = true
 
 [blackfriday]
   angledQuotes = true
