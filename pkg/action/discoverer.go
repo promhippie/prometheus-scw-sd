@@ -21,8 +21,10 @@ const (
 	imageIdentifierLabel = scwPrefix + "image_id"
 	imageNameLabel       = scwPrefix + "image_name"
 	publicIPLabel        = scwPrefix + "public_ipv4"
+	publicHostLabel      = scwPrefix + "public_host"
 	stateLabel           = scwPrefix + "state"
 	privateIPLabel       = scwPrefix + "private_ipv4"
+	privateHostLabel     = scwPrefix + "private_host"
 	hostnameLabel        = scwPrefix + "hostname"
 	orgLabel             = scwPrefix + "org"
 	commercialTypeLabel  = scwPrefix + "commercial_type"
@@ -77,6 +79,11 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 	requestDuration.Observe(time.Since(now).Seconds())
 
 	if err != nil {
+		level.Warn(d.logger).Log(
+			"msg", "Failed to fetch servers",
+			"err", err,
+		)
+
 		requestFailures.Inc()
 		return nil, err
 	}
@@ -105,8 +112,10 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 				model.LabelName(imageIdentifierLabel): model.LabelValue(server.Image.Identifier),
 				model.LabelName(imageNameLabel):       model.LabelValue(server.Image.Name),
 				model.LabelName(publicIPLabel):        model.LabelValue(server.PublicAddress.IP),
+				model.LabelName(publicHostLabel):      model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.Identifier)),
 				model.LabelName(stateLabel):           model.LabelValue(server.State),
 				model.LabelName(privateIPLabel):       model.LabelValue(server.PrivateIP),
+				model.LabelName(privateHostLabel):     model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.Identifier)),
 				model.LabelName(hostnameLabel):        model.LabelValue(server.Hostname),
 				model.LabelName(orgLabel):             model.LabelValue(server.Organization),
 				model.LabelName(commercialTypeLabel):  model.LabelValue(server.CommercialType),
