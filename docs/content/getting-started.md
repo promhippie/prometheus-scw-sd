@@ -54,9 +54,6 @@ PROMETHEUS_SCW_LOG_LEVEL
 PROMETHEUS_SCW_LOG_PRETTY
 : Enable pretty messages for logging, defaults to `true`
 
-PROMETHEUS_SCW_LOG_COLOR
-: Enable color output for logging, defaults to `false`
-
 PROMETHEUS_SCW_WEB_ADDRESS
 : Address to bind the metrics server, defaults to `0.0.0.0:9000`
 
