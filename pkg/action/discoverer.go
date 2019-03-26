@@ -16,6 +16,7 @@ import (
 
 const (
 	scwPrefix            = model.MetaLabelPrefix + "scaleway_"
+	projectLabel         = scwPrefix + "project"
 	nameLabel            = scwPrefix + "name"
 	identifierLabel      = scwPrefix + "id"
 	archLabel            = scwPrefix + "arch"
@@ -49,7 +50,7 @@ var (
 
 // Discoverer implements the Prometheus discoverer interface.
 type Discoverer struct {
-	client    *api.ScalewayAPI
+	clients   map[string]*api.ScalewayAPI
 	logger    log.Logger
 	refresh   int
 	separator string
@@ -77,69 +78,77 @@ func (d Discoverer) Run(ctx context.Context, ch chan<- []*targetgroup.Group) {
 }
 
 func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, error) {
-	now := time.Now()
-	servers, err := d.client.GetServers(false, 0)
-	requestDuration.Observe(time.Since(now).Seconds())
-
-	if err != nil {
-		level.Warn(d.logger).Log(
-			"msg", "Failed to fetch servers",
-			"err", err,
-		)
-
-		requestFailures.Inc()
-		return nil, err
-	}
-
-	level.Debug(d.logger).Log(
-		"msg", "Requested servers",
-		"count", len(*servers),
-	)
-
 	current := make(map[string]struct{})
-	targets := make([]*targetgroup.Group, len(*servers))
+	targets := make([]*targetgroup.Group, 0)
 
-	for _, server := range *servers {
-		target := &targetgroup.Group{
-			Source: fmt.Sprintf("scaleway/%s", server.Identifier),
-			Targets: []model.LabelSet{
-				{
-					model.AddressLabel: model.LabelValue(server.PublicAddress.IP),
-				},
-			},
-			Labels: model.LabelSet{
-				model.AddressLabel:                    model.LabelValue(server.PublicAddress.IP),
-				model.LabelName(nameLabel):            model.LabelValue(server.Name),
-				model.LabelName(identifierLabel):      model.LabelValue(server.Identifier),
-				model.LabelName(archLabel):            model.LabelValue(server.Arch),
-				model.LabelName(imageIdentifierLabel): model.LabelValue(server.Image.Identifier),
-				model.LabelName(imageNameLabel):       model.LabelValue(server.Image.Name),
-				model.LabelName(publicIPLabel):        model.LabelValue(server.PublicAddress.IP),
-				model.LabelName(publicHostLabel):      model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.Identifier)),
-				model.LabelName(stateLabel):           model.LabelValue(server.State),
-				model.LabelName(privateIPLabel):       model.LabelValue(server.PrivateIP),
-				model.LabelName(privateHostLabel):     model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.Identifier)),
-				model.LabelName(hostnameLabel):        model.LabelValue(server.Hostname),
-				model.LabelName(orgLabel):             model.LabelValue(server.Organization),
-				model.LabelName(commercialTypeLabel):  model.LabelValue(server.CommercialType),
-				model.LabelName(platformLabel):        model.LabelValue(server.Location.Platform),
-				model.LabelName(hypervisorLabel):      model.LabelValue(server.Location.Hypervisor),
-				model.LabelName(nodeLabel):            model.LabelValue(server.Location.Node),
-				model.LabelName(bladeLabel):           model.LabelValue(server.Location.Blade),
-				model.LabelName(chassisLabel):         model.LabelValue(server.Location.Chassis),
-				model.LabelName(clusterLabel):         model.LabelValue(server.Location.Cluster),
-				model.LabelName(zoneLabel):            model.LabelValue(server.Location.ZoneID),
-				model.LabelName(tagsLabel):            model.LabelValue(strings.Join(server.Tags, d.separator)),
-			},
+	for project, client := range d.clients {
+
+		now := time.Now()
+		servers, err := client.GetServers(false, 0)
+		requestDuration.WithLabelValues(project).Observe(time.Since(now).Seconds())
+
+		if err != nil {
+			level.Warn(d.logger).Log(
+				"msg", "Failed to fetch servers",
+				"project", project,
+				"err", err,
+			)
+
+			requestFailures.WithLabelValues(project).Inc()
+			return nil, err
 		}
 
 		level.Debug(d.logger).Log(
-			"msg", "Server added",
-			"source", target.Source,
+			"msg", "Requested servers",
+			"project", project,
+			"count", len(*servers),
 		)
 
-		current[target.Source] = struct{}{}
-		targets = append(targets, target)
+		for _, server := range *servers {
+			target := &targetgroup.Group{
+				Source: fmt.Sprintf("scaleway/%s", server.Identifier),
+				Targets: []model.LabelSet{
+					{
+						model.AddressLabel: model.LabelValue(server.PublicAddress.IP),
+					},
+				},
+				Labels: model.LabelSet{
+					model.AddressLabel:                    model.LabelValue(server.PublicAddress.IP),
+					model.LabelName(projectLabel):         model.LabelValue(project),
+					model.LabelName(nameLabel):            model.LabelValue(server.Name),
+					model.LabelName(identifierLabel):      model.LabelValue(server.Identifier),
+					model.LabelName(archLabel):            model.LabelValue(server.Arch),
+					model.LabelName(imageIdentifierLabel): model.LabelValue(server.Image.Identifier),
+					model.LabelName(imageNameLabel):       model.LabelValue(server.Image.Name),
+					model.LabelName(publicIPLabel):        model.LabelValue(server.PublicAddress.IP),
+					model.LabelName(publicHostLabel):      model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.Identifier)),
+					model.LabelName(stateLabel):           model.LabelValue(server.State),
+					model.LabelName(privateIPLabel):       model.LabelValue(server.PrivateIP),
+					model.LabelName(privateHostLabel):     model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.Identifier)),
+					model.LabelName(hostnameLabel):        model.LabelValue(server.Hostname),
+					model.LabelName(orgLabel):             model.LabelValue(server.Organization),
+					model.LabelName(commercialTypeLabel):  model.LabelValue(server.CommercialType),
+					model.LabelName(platformLabel):        model.LabelValue(server.Location.Platform),
+					model.LabelName(hypervisorLabel):      model.LabelValue(server.Location.Hypervisor),
+					model.LabelName(nodeLabel):            model.LabelValue(server.Location.Node),
+					model.LabelName(bladeLabel):           model.LabelValue(server.Location.Blade),
+					model.LabelName(chassisLabel):         model.LabelValue(server.Location.Chassis),
+					model.LabelName(clusterLabel):         model.LabelValue(server.Location.Cluster),
+					model.LabelName(zoneLabel):            model.LabelValue(server.Location.ZoneID),
+					model.LabelName(tagsLabel):            model.LabelValue(strings.Join(server.Tags, d.separator)),
+				},
+			}
+
+			level.Debug(d.logger).Log(
+				"msg", "Server added",
+				"project", project,
+				"source", target.Source,
+			)
+
+			current[target.Source] = struct{}{}
+			targets = append(targets, target)
+		}
+
 	}
 
 	for k := range d.lasts {

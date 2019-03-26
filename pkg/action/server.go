@@ -35,27 +35,42 @@ func Server(cfg *config.Config, logger log.Logger) error {
 
 	{
 		ctx := context.Background()
+		clients := make(map[string]*api.ScalewayAPI, len(cfg.Target.Credentials))
 
-		client, err := api.NewScalewayAPI(
-			cfg.Target.Org,
-			cfg.Target.Token,
-			"",
-			cfg.Target.Region,
-			func(s *api.ScalewayAPI) {
-				s.Logger = scwlog.NewDisableLogger()
-			},
-		)
+		for _, credential := range cfg.Target.Credentials {
+			client, err := api.NewScalewayAPI(
+				credential.Org,
+				credential.Token,
+				"",
+				credential.Region,
+				func(s *api.ScalewayAPI) {
+					s.Logger = scwlog.NewDisableLogger()
+				},
+			)
 
-		if err != nil {
-			return ErrClientFailed
-		}
+			if err != nil {
+				level.Error(logger).Log(
+					"msg", ErrClientFailed,
+					"project", credential.Project,
+				)
 
-		if err := client.CheckCredentials(); err != nil {
-			return ErrClientForbidden
+				return ErrClientFailed
+			}
+
+			if err := client.CheckCredentials(); err != nil {
+				level.Error(logger).Log(
+					"msg", ErrClientForbidden,
+					"project", credential.Project,
+				)
+
+				return ErrClientForbidden
+			}
+
+			clients[credential.Project] = client
 		}
 
 		disc := Discoverer{
-			client:    client,
+			clients:   clients,
 			logger:    logger,
 			refresh:   cfg.Target.Refresh,
 			separator: ",",
