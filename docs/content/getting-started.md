@@ -88,6 +88,7 @@ PROMETHEUS_SCW_OUTPUT_REFRESH
 * `__meta_scaleway_chassis`
 * `__meta_scaleway_cluster`
 * `__meta_scaleway_zone`
+* `__meta_scaleway_tags`
 
 ## Metrics
 
