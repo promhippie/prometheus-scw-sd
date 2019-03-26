@@ -1,6 +1,6 @@
 # Prometheus Scaleway SD
 
-[![Build Status](http://github.dronehippie.de/api/badges/promhippie/prometheus-scw-sd/status.svg)](http://github.dronehippie.de/promhippie/prometheus-scw-sd)
+[![Build Status](http://cloud.drone.io/api/badges/promhippie/prometheus-scw-sd/status.svg)](http://cloud.drone.io/promhippie/prometheus-scw-sd)
 [![Stories in Ready](https://badge.waffle.io/promhippie/prometheus-scw-sd.svg?label=ready&title=Ready)](http://waffle.io/promhippie/prometheus-scw-sd)
 [![Join the Matrix chat at https://matrix.to/#/#webhippie:matrix.org](https://img.shields.io/badge/matrix-%23webhippie-7bc9a4.svg)](https://matrix.to/#/#webhippie:matrix.org)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4671e4dac861415db19d41c7959a530a)](https://www.codacy.com/app/promhippie/prometheus-scw-sd?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=promhippie/prometheus-scw-sd&amp;utm_campaign=Badge_Grade)
