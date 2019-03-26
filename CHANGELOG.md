@@ -10,6 +10,7 @@
 
 * Add support for server tags
 * Support multiple credentials and config file
+* Add simple healthcheck command
 
 ### Removed
 
