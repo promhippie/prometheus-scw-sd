@@ -22,8 +22,8 @@ var (
 	// ErrMissingScwOrg defines the error if scw.org is empty.
 	ErrMissingScwOrg = errors.New("Missing required scw.org")
 
-	// ErrMissingScwRegion defines the error if scw.region is empty.
-	ErrMissingScwRegion = errors.New("Missing required scw.region")
+	// ErrMissingAnyCredentials defines the error if no credentials are provided.
+	ErrMissingAnyCredentials = errors.New("Missing any credentials")
 )
 
 func main() {
@@ -93,29 +93,43 @@ func main() {
 						Destination: &cfg.Target.Refresh,
 					},
 					&cli.StringFlag{
-						Name:        "scw.token",
-						Value:       "",
-						Usage:       "Access token for the Scaleway API",
-						EnvVars:     []string{"PROMETHEUS_SCW_TOKEN"},
-						Destination: &cfg.Target.Token,
+						Name:    "scw.token",
+						Value:   "",
+						Usage:   "Access token for the Scaleway API",
+						EnvVars: []string{"PROMETHEUS_SCW_TOKEN"},
 					},
 					&cli.StringFlag{
-						Name:        "scw.org",
-						Value:       "",
-						Usage:       "Organization for the Scaleway API",
-						EnvVars:     []string{"PROMETHEUS_SCW_ORG"},
-						Destination: &cfg.Target.Org,
+						Name:    "scw.org",
+						Value:   "",
+						Usage:   "Organization for the Scaleway API",
+						EnvVars: []string{"PROMETHEUS_SCW_ORG"},
 					},
 					&cli.StringFlag{
-						Name:        "scw.region",
-						Value:       "",
-						Usage:       "Region for the Scaleway API",
-						EnvVars:     []string{"PROMETHEUS_SCW_REGION"},
-						Destination: &cfg.Target.Region,
+						Name:    "scw.region",
+						Value:   "",
+						Usage:   "Region for the Scaleway API",
+						EnvVars: []string{"PROMETHEUS_SCW_REGION"},
+					},
+					&cli.StringFlag{
+						Name:    "scw.config",
+						Value:   "",
+						Usage:   "Path to Scaleway configuration file",
+						EnvVars: []string{"PROMETHEUS_SCW_CONFIG"},
 					},
 				},
 				Action: func(c *cli.Context) error {
 					logger := setupLogger(cfg)
+
+					if c.IsSet("scw.config") {
+						if err := readConfig(c.String("scw.config"), cfg); err != nil {
+							level.Error(logger).Log(
+								"msg", "Failed to read config",
+								"err", err,
+							)
+
+							return err
+						}
+					}
 
 					if cfg.Target.File == "" {
 						level.Error(logger).Log(
@@ -125,28 +139,42 @@ func main() {
 						return ErrMissingOutputFile
 					}
 
-					if cfg.Target.Token == "" {
-						level.Error(logger).Log(
-							"msg", ErrMissingScwToken,
+					if c.IsSet("scw.token") && c.IsSet("scw.org") && c.IsSet("scw.region") {
+						credentials := config.Credential{
+							Project: "default",
+							Token:   c.String("scw.token"),
+							Org:     c.String("scw.org"),
+							Region:  c.String("scw.region"),
+						}
+
+						cfg.Target.Credentials = append(
+							cfg.Target.Credentials,
+							credentials,
 						)
 
-						return ErrMissingScwToken
+						if credentials.Token == "" {
+							level.Error(logger).Log(
+								"msg", ErrMissingScwToken,
+							)
+
+							return ErrMissingScwToken
+						}
+
+						if credentials.Org == "" {
+							level.Error(logger).Log(
+								"msg", ErrMissingScwOrg,
+							)
+
+							return ErrMissingScwOrg
+						}
 					}
 
-					if cfg.Target.Org == "" {
+					if len(cfg.Target.Credentials) == 0 {
 						level.Error(logger).Log(
-							"msg", ErrMissingScwOrg,
+							"msg", ErrMissingAnyCredentials,
 						)
 
-						return ErrMissingScwOrg
-					}
-
-					if cfg.Target.Region == "" {
-						level.Error(logger).Log(
-							"msg", ErrMissingScwRegion,
-						)
-
-						return ErrMissingScwRegion
+						return ErrMissingAnyCredentials
 					}
 
 					return action.Server(cfg, logger)

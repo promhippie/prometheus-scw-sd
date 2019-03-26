@@ -5,7 +5,15 @@
 ### Changed
 
 * Switch to cloud.drone.io for CI
+
+### Added
+
 * Add support for server tags
+* Support multiple credentials and config file
+
+### Removed
+
+* Region is not a requirement anymore
 
 ## [0.2.0] - 2019-01-12
 

@@ -1,0 +1,34 @@
+{
+	"server": {
+		"addr": "0.0.0.0:9000",
+		"path": "/metrics"
+	},
+	"logs": {
+		"level": "error",
+		"pretty": false
+	},
+	"target": {
+		"file": "/etc/prometheus/scw.json",
+		"refresh": 30,
+		"credentials": [
+			{
+				"project": "example1",
+				"token": "",
+				"org": "",
+				"region": "par1"
+			},
+			{
+				"project": "example2",
+				"token": "",
+				"org": "",
+				"region": "par1"
+			},
+			{
+				"project": "example3",
+				"token": "",
+				"org": "",
+				"region": "par1"
+			}
+		]
+	}
+}
