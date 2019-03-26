@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/go-kit/kit/log"
@@ -35,6 +36,7 @@ const (
 	chassisLabel         = scwPrefix + "chassis"
 	clusterLabel         = scwPrefix + "cluster"
 	zoneLabel            = scwPrefix + "zone"
+	tagsLabel            = scwPrefix + "tags"
 )
 
 var (
@@ -47,10 +49,11 @@ var (
 
 // Discoverer implements the Prometheus discoverer interface.
 type Discoverer struct {
-	client  *api.ScalewayAPI
-	logger  log.Logger
-	refresh int
-	lasts   map[string]struct{}
+	client    *api.ScalewayAPI
+	logger    log.Logger
+	refresh   int
+	separator string
+	lasts     map[string]struct{}
 }
 
 // Run initializes fetching the targets for service discovery.
@@ -126,6 +129,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 				model.LabelName(chassisLabel):         model.LabelValue(server.Location.Chassis),
 				model.LabelName(clusterLabel):         model.LabelValue(server.Location.Cluster),
 				model.LabelName(zoneLabel):            model.LabelValue(server.Location.ZoneID),
+				model.LabelName(tagsLabel):            model.LabelValue(strings.Join(server.Tags, d.separator)),
 			},
 		}
 

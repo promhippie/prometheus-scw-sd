@@ -55,10 +55,11 @@ func Server(cfg *config.Config, logger log.Logger) error {
 		}
 
 		disc := Discoverer{
-			client:  client,
-			logger:  logger,
-			refresh: cfg.Target.Refresh,
-			lasts:   make(map[string]struct{}),
+			client:    client,
+			logger:    logger,
+			refresh:   cfg.Target.Refresh,
+			separator: ",",
+			lasts:     make(map[string]struct{}),
 		}
 
 		a := adapter.NewAdapter(ctx, cfg.Target.File, "scaleway-sd", disc, logger)
