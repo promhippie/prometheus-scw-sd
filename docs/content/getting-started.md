@@ -44,16 +44,19 @@ Currently we have not prepared a deployment for Kubernetes, but this is somethin
 If you prefer to configure the service with environment variables you can see the available variables below, in case you want to configure multiple accounts with a single service you are forced to use the configuration file as the environment variables are limited to a single account. As the service is pretty lightweight you can even start an instance per account and configure it entirely by the variables, it's up to you.
 
 PROMETHEUS_SCW_CONFIG
-: Path to Scaleway configuration file, optionally, required for muli credentials
+: Path to Scaleway configuration file, optionally, required for multi credentials
 
-PROMETHEUS_SCW_TOKEN
-: Access token for the Scaleway API, required for authentication
+PROMETHEUS_SCW_ACCESS_KEY
+: Access key for the Scaleway API, required for authentication
+
+PROMETHEUS_SCW_SECRET_KEY
+: Secret key for the Scaleway API, required for authentication
 
 PROMETHEUS_SCW_ORG
-: Organization for the Scaleway API, required for authentication
+: Organization for the Scaleway API, optionally
 
-PROMETHEUS_SCW_REGION
-: Region for the Scaleway API, required for authentication
+PROMETHEUS_SCW_ZONE
+: Zone for the Scaleway API, optionally
 
 PROMETHEUS_SCW_LOG_LEVEL
 : Only log messages with given severity, defaults to `info`
@@ -73,33 +76,63 @@ PROMETHEUS_SCW_OUTPUT_FILE
 PROMETHEUS_SCW_OUTPUT_REFRESH
 : Discovery refresh interval in seconds, defaults to `30`
 
+PROMETHEUS_SCW_CHECK_INSTANCE
+: Enable fetching servers from instance API, defaults to `true`
+
+PROMETHEUS_SCW_CHECK_BAREMETAL
+: Enable fetching servers from baremetal API, defaults to `true`
+
 ### Configuration file
 
 Especially if you want to configure multiple accounts within a single service discovery you got to use the configuration file. So far we support the file formats `JSON` and `YAML`, if you want to get a full example configuration just take a look at [our repository](https://github.com/promhippie/prometheus-scw-sd/tree/master/config), there you can always see the latest configuration format. These example configurations include all available options, they also include the default values.
 
 ## Labels
 
-* `__meta_scaleway_name`
-* `__meta_scaleway_id`
+* `__address__`
+* `__meta_scaleway_allowed_actions`
 * `__meta_scaleway_arch`
+* `__meta_scaleway_boot_type`
+* `__meta_scaleway_bootscript_id`
+* `__meta_scaleway_bootscript_initrd`
+* `__meta_scaleway_bootscript_kernel`
+* `__meta_scaleway_bootscript_title`
+* `__meta_scaleway_cluster`
+* `__meta_scaleway_commercial_type`
+* `__meta_scaleway_description`
+* `__meta_scaleway_domain`
+* `__meta_scaleway_dynamic_ip_required`
+* `__meta_scaleway_enable_ipv6`
+* `__meta_scaleway_hostname`
+* `__meta_scaleway_hypervisor`
+* `__meta_scaleway_id`
 * `__meta_scaleway_image_id`
 * `__meta_scaleway_image_name`
-* `__meta_scaleway_public_ipv4`
-* `__meta_scaleway_public_host`
-* `__meta_scaleway_state`
-* `__meta_scaleway_private_ipv4`
-* `__meta_scaleway_private_host`
-* `__meta_scaleway_hostname`
-* `__meta_scaleway_org`
-* `__meta_scaleway_commercial_type`
-* `__meta_scaleway_platform`
-* `__meta_scaleway_hypervisor`
+* `__meta_scaleway_install_hostname`
+* `__meta_scaleway_install_os`
+* `__meta_scaleway_install_status`
+* `__meta_scaleway_ips`
+* `__meta_scaleway_ipv6`
+* `__meta_scaleway_kind`
+* `__meta_scaleway_name`
 * `__meta_scaleway_node`
-* `__meta_scaleway_blade`
-* `__meta_scaleway_chassis`
-* `__meta_scaleway_cluster`
-* `__meta_scaleway_zone`
+* `__meta_scaleway_offer`
+* `__meta_scaleway_org`
+* `__meta_scaleway_placement_group_id`
+* `__meta_scaleway_placement_group_name`
+* `__meta_scaleway_platform`
+* `__meta_scaleway_private_host`
+* `__meta_scaleway_private_ipv4`
+* `__meta_scaleway_project`
+* `__meta_scaleway_protected`
+* `__meta_scaleway_public_host`
+* `__meta_scaleway_public_ipv4`
+* `__meta_scaleway_security_group_id`
+* `__meta_scaleway_security_group_name`
+* `__meta_scaleway_state_detail`
+* `__meta_scaleway_state`
+* `__meta_scaleway_status`
 * `__meta_scaleway_tags`
+* `__meta_scaleway_zone`
 
 ## Metrics
 

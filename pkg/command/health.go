@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-kit/kit/log/level"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
-	"gopkg.in/urfave/cli.v2"
+	"github.com/urfave/cli/v2"
 )
 
 // Health provides the sub-command to perform a health check.
@@ -23,10 +23,11 @@ func Health(cfg *config.Config) *cli.Command {
 				Destination: &cfg.Server.Addr,
 			},
 			&cli.StringFlag{
-				Name:    "scw.config",
-				Value:   "",
-				Usage:   "Path to Scaleway configuration file",
-				EnvVars: []string{"PROMETHEUS_SCW_CONFIG"},
+				Name:        "scw.config",
+				Value:       "",
+				Usage:       "Path to Scaleway configuration file",
+				EnvVars:     []string{"PROMETHEUS_SCW_CONFIG"},
+				Destination: nil,
 			},
 		},
 		Action: func(c *cli.Context) error {

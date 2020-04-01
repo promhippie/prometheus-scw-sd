@@ -1,3 +1,4 @@
+---
 server:
   addr: 0.0.0.0:9000
   path: /metrics
@@ -11,14 +12,15 @@ target:
   refresh: 30
   credentials:
   - project: example1
-    token:
-    org:
-    region: par1
+    access_key:
+    secret_key:
   - project: example2
-    token:
-    org:
-    region: par1
+    access_key:
+    secret_key:
+    zone: fr-par-1
   - project: example3
-    token:
+    access_key:
+    secret_key:
     org:
-    region: par1
+
+...
