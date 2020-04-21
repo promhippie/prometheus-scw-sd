@@ -2,7 +2,7 @@
 
 <html id="html" lang="en-us">
 	<head>
-	<meta name="generator" content="Hugo 0.54.0" />
+	<meta name="generator" content="Hugo 0.55.5" />
 		<meta http-equiv="content-type" content="text/html;charset=utf-8">
 		<meta name="viewport" content="width=device-width"/>
 
@@ -440,16 +440,19 @@
 
 <dl>
 <dt>PROMETHEUS_SCW_CONFIG<br /></dt>
-<dd>Path to Scaleway configuration file, optionally, required for muli credentials<br />
+<dd>Path to Scaleway configuration file, optionally, required for multi credentials<br />
 <br /></dd>
-<dt>PROMETHEUS_SCW_TOKEN<br /></dt>
-<dd>Access token for the Scaleway API, required for authentication<br />
+<dt>PROMETHEUS_SCW_ACCESS_KEY<br /></dt>
+<dd>Access key for the Scaleway API, required for authentication<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_SECRET_KEY<br /></dt>
+<dd>Secret key for the Scaleway API, required for authentication<br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_ORG<br /></dt>
-<dd>Organization for the Scaleway API, required for authentication<br />
+<dd>Organization for the Scaleway API, optionally<br />
 <br /></dd>
-<dt>PROMETHEUS_SCW_REGION<br /></dt>
-<dd>Region for the Scaleway API, required for authentication<br />
+<dt>PROMETHEUS_SCW_ZONE<br /></dt>
+<dd>Zone for the Scaleway API, optionally<br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_LOG_LEVEL<br /></dt>
 <dd>Only log messages with given severity, defaults to <code>info</code><br />
@@ -469,6 +472,12 @@
 <dt>PROMETHEUS_SCW_OUTPUT_REFRESH<br /></dt>
 <dd>Discovery refresh interval in seconds, defaults to <code>30</code><br />
 <br /></dd>
+<dt>PROMETHEUS_SCW_CHECK_INSTANCE<br /></dt>
+<dd>Enable fetching servers from instance API, defaults to <code>true</code><br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_CHECK_BAREMETAL<br /></dt>
+<dd>Enable fetching servers from baremetal API, defaults to <code>true</code><br />
+<br /></dd>
 </dl>
 
 <h3 id="configuration-file">Configuration file</h3>
@@ -478,27 +487,51 @@
 <h2 id="labels">Labels</h2>
 
 <ul>
-<li><code>__meta_scaleway_name</code><br /></li>
-<li><code>__meta_scaleway_id</code><br /></li>
+<li><code>__address__</code><br /></li>
+<li><code>__meta_scaleway_allowed_actions</code><br /></li>
 <li><code>__meta_scaleway_arch</code><br /></li>
+<li><code>__meta_scaleway_boot_type</code><br /></li>
+<li><code>__meta_scaleway_bootscript_id</code><br /></li>
+<li><code>__meta_scaleway_bootscript_initrd</code><br /></li>
+<li><code>__meta_scaleway_bootscript_kernel</code><br /></li>
+<li><code>__meta_scaleway_bootscript_title</code><br /></li>
+<li><code>__meta_scaleway_cluster</code><br /></li>
+<li><code>__meta_scaleway_commercial_type</code><br /></li>
+<li><code>__meta_scaleway_description</code><br /></li>
+<li><code>__meta_scaleway_domain</code><br /></li>
+<li><code>__meta_scaleway_dynamic_ip_required</code><br /></li>
+<li><code>__meta_scaleway_enable_ipv6</code><br /></li>
+<li><code>__meta_scaleway_hostname</code><br /></li>
+<li><code>__meta_scaleway_hypervisor</code><br /></li>
+<li><code>__meta_scaleway_id</code><br /></li>
 <li><code>__meta_scaleway_image_id</code><br /></li>
 <li><code>__meta_scaleway_image_name</code><br /></li>
-<li><code>__meta_scaleway_public_ipv4</code><br /></li>
-<li><code>__meta_scaleway_public_host</code><br /></li>
-<li><code>__meta_scaleway_state</code><br /></li>
-<li><code>__meta_scaleway_private_ipv4</code><br /></li>
-<li><code>__meta_scaleway_private_host</code><br /></li>
-<li><code>__meta_scaleway_hostname</code><br /></li>
-<li><code>__meta_scaleway_org</code><br /></li>
-<li><code>__meta_scaleway_commercial_type</code><br /></li>
-<li><code>__meta_scaleway_platform</code><br /></li>
-<li><code>__meta_scaleway_hypervisor</code><br /></li>
+<li><code>__meta_scaleway_install_hostname</code><br /></li>
+<li><code>__meta_scaleway_install_os</code><br /></li>
+<li><code>__meta_scaleway_install_status</code><br /></li>
+<li><code>__meta_scaleway_ips</code><br /></li>
+<li><code>__meta_scaleway_ipv6</code><br /></li>
+<li><code>__meta_scaleway_kind</code><br /></li>
+<li><code>__meta_scaleway_name</code><br /></li>
 <li><code>__meta_scaleway_node</code><br /></li>
-<li><code>__meta_scaleway_blade</code><br /></li>
-<li><code>__meta_scaleway_chassis</code><br /></li>
-<li><code>__meta_scaleway_cluster</code><br /></li>
-<li><code>__meta_scaleway_zone</code><br /></li>
-<li><code>__meta_scaleway_tags</code><br />
+<li><code>__meta_scaleway_offer</code><br /></li>
+<li><code>__meta_scaleway_org</code><br /></li>
+<li><code>__meta_scaleway_placement_group_id</code><br /></li>
+<li><code>__meta_scaleway_placement_group_name</code><br /></li>
+<li><code>__meta_scaleway_platform</code><br /></li>
+<li><code>__meta_scaleway_private_host</code><br /></li>
+<li><code>__meta_scaleway_private_ipv4</code><br /></li>
+<li><code>__meta_scaleway_project</code><br /></li>
+<li><code>__meta_scaleway_protected</code><br /></li>
+<li><code>__meta_scaleway_public_host</code><br /></li>
+<li><code>__meta_scaleway_public_ipv4</code><br /></li>
+<li><code>__meta_scaleway_security_group_id</code><br /></li>
+<li><code>__meta_scaleway_security_group_name</code><br /></li>
+<li><code>__meta_scaleway_state_detail</code><br /></li>
+<li><code>__meta_scaleway_state</code><br /></li>
+<li><code>__meta_scaleway_status</code><br /></li>
+<li><code>__meta_scaleway_tags</code><br /></li>
+<li><code>__meta_scaleway_zone</code><br />
 <br /></li>
 </ul>
 
@@ -529,22 +562,12 @@
 
 				<p>As this project is built with Go you need to install Go first. The installation of Go is out of the scope of this document, please follow the <a href="https://golang.org/doc/install">official documentation</a>. After the installation of Go you need to get the sources:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">go get -d github.com/promhippie/prometheus-scw-sd
-cd $GOPATH/src/github.com/promhippie/prometheus-scw-sd</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">git clone https://github.com/promhippie/prometheus-scw-sd.git
+cd prometheus-scw-sd/</code></pre></div>
 
-<p>All required tool besides Go itself are bundled or getting automatically installed within the <code>GOPATH</code>. We are using <a href="https://github.com/twitchtv/retool">retool</a> to keep the used tools consistent and <a href="https://github.com/golang/dep">dep</a> to manage the dependencies. All commands to build this project are part of our <code>Makefile</code>.</p>
+<p>All required tool besides Go itself are bundled by Go modules, all you need is part of the <code>Makfile</code>:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># install retool
-make retool
-
-# sync dependencies
-make sync
-
-# generate code
-make generate
-
-# build binary
-make build</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">make generate build</code></pre></div>
 
 <p>Finally you should have the binary within the <code>bin/</code> folder now, give it a try with <code>./bin/prometheus-scw-sd -h</code> to see all available options.</p>
 
