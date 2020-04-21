@@ -1,4 +1,4 @@
-package main
+package command
 
 import (
 	"errors"
@@ -6,21 +6,7 @@ import (
 	"github.com/go-kit/kit/log/level"
 	"github.com/promhippie/prometheus-scw-sd/pkg/action"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
-	"gopkg.in/urfave/cli.v2"
-)
-
-var (
-	// ErrMissingOutputFile defines the error if output.file is empty.
-	ErrMissingOutputFile = errors.New("Missing path for output.file")
-
-	// ErrMissingScwToken defines the error if scw.token is empty.
-	ErrMissingScwToken = errors.New("Missing required scw.token")
-
-	// ErrMissingScwOrg defines the error if scw.org is empty.
-	ErrMissingScwOrg = errors.New("Missing required scw.org")
-
-	// ErrMissingAnyCredentials defines the error if no credentials are provided.
-	ErrMissingAnyCredentials = errors.New("Missing any credentials")
+	"github.com/urfave/cli/v2"
 )
 
 // Server provides the sub-command to start the server.
@@ -57,11 +43,31 @@ func Server(cfg *config.Config) *cli.Command {
 				EnvVars:     []string{"PROMETHEUS_SCW_OUTPUT_REFRESH"},
 				Destination: &cfg.Target.Refresh,
 			},
+			&cli.BoolFlag{
+				Name:        "scw.check_instance",
+				Value:       true,
+				Usage:       "Enable instance gathering",
+				EnvVars:     []string{"PROMETHEUS_SCW_CHECK_INSTANCE"},
+				Destination: &cfg.Target.CheckInstance,
+			},
+			&cli.BoolFlag{
+				Name:        "scw.check_baremetal",
+				Value:       true,
+				Usage:       "Enable baremetal gathering",
+				EnvVars:     []string{"PROMETHEUS_SCW_CHECK_BAREMETAL"},
+				Destination: &cfg.Target.CheckBaremetal,
+			},
 			&cli.StringFlag{
-				Name:    "scw.token",
+				Name:    "scw.access_key",
 				Value:   "",
-				Usage:   "Access token for the Scaleway API",
-				EnvVars: []string{"PROMETHEUS_SCW_TOKEN"},
+				Usage:   "Access key for the Scaleway API",
+				EnvVars: []string{"PROMETHEUS_SCW_ACESS_KEY"},
+			},
+			&cli.StringFlag{
+				Name:    "scw.secret_key",
+				Value:   "",
+				Usage:   "Secret key for the Scaleway API",
+				EnvVars: []string{"PROMETHEUS_SCW_SECRET_KEY"},
 			},
 			&cli.StringFlag{
 				Name:    "scw.org",
@@ -70,10 +76,10 @@ func Server(cfg *config.Config) *cli.Command {
 				EnvVars: []string{"PROMETHEUS_SCW_ORG"},
 			},
 			&cli.StringFlag{
-				Name:    "scw.region",
+				Name:    "scw.zone",
 				Value:   "",
-				Usage:   "Region for the Scaleway API",
-				EnvVars: []string{"PROMETHEUS_SCW_REGION"},
+				Usage:   "Zone for the Scaleway API",
+				EnvVars: []string{"PROMETHEUS_SCW_ZONE"},
 			},
 			&cli.StringFlag{
 				Name:    "scw.config",
@@ -81,6 +87,26 @@ func Server(cfg *config.Config) *cli.Command {
 				Usage:   "Path to Scaleway configuration file",
 				EnvVars: []string{"PROMETHEUS_SCW_CONFIG"},
 			},
+			&cli.StringSliceFlag{
+				Name:    "scw.instance_zone",
+				Value:   cli.NewStringSlice("fr-par-1", "nl-ams-1"),
+				Usage:   "List of available zones for instance API",
+				EnvVars: []string{"PROMETHEUS_SCW_INSTANCE_ZONES"},
+				Hidden:  true,
+			},
+			&cli.StringSliceFlag{
+				Name:    "scw.baremetal_zone",
+				Value:   cli.NewStringSlice("fr-par-2"),
+				Usage:   "List of available zones for baremetal API",
+				EnvVars: []string{"PROMETHEUS_SCW_BAREMETAL_ZONES"},
+				Hidden:  true,
+			},
+		},
+		Before: func(c *cli.Context) error {
+			cfg.Zones.Instance = c.StringSlice("scw.instance_zone")
+			cfg.Zones.Baremetal = c.StringSlice("scw.baremetal_zone")
+
+			return nil
 		},
 		Action: func(c *cli.Context) error {
 			logger := setupLogger(cfg)
@@ -98,18 +124,19 @@ func Server(cfg *config.Config) *cli.Command {
 
 			if cfg.Target.File == "" {
 				level.Error(logger).Log(
-					"msg", ErrMissingOutputFile,
+					"msg", "Missing path for output.file",
 				)
 
-				return ErrMissingOutputFile
+				return errors.New("missing path for output.file")
 			}
 
-			if c.IsSet("scw.token") && c.IsSet("scw.org") && c.IsSet("scw.region") {
+			if c.IsSet("scw.access_key") && c.IsSet("scw.secret_key") {
 				credentials := config.Credential{
-					Project: "default",
-					Token:   c.String("scw.token"),
-					Org:     c.String("scw.org"),
-					Region:  c.String("scw.region"),
+					Project:   "default",
+					AccessKey: c.String("scw.access_key"),
+					SecretKey: c.String("scw.secret_key"),
+					Org:       c.String("scw.org"),
+					Zone:      c.String("scw.zone"),
 				}
 
 				cfg.Target.Credentials = append(
@@ -117,29 +144,29 @@ func Server(cfg *config.Config) *cli.Command {
 					credentials,
 				)
 
-				if credentials.Token == "" {
+				if credentials.AccessKey == "" {
 					level.Error(logger).Log(
-						"msg", ErrMissingScwToken,
+						"msg", "Missing required scw.access_key",
 					)
 
-					return ErrMissingScwToken
+					return errors.New("missing required scw.access_key")
 				}
 
-				if credentials.Org == "" {
+				if credentials.SecretKey == "" {
 					level.Error(logger).Log(
-						"msg", ErrMissingScwOrg,
+						"msg", "Missing required scw.secret_key",
 					)
 
-					return ErrMissingScwOrg
+					return errors.New("missing required scw.secret_key")
 				}
 			}
 
 			if len(cfg.Target.Credentials) == 0 {
 				level.Error(logger).Log(
-					"msg", ErrMissingAnyCredentials,
+					"msg", "Missing any credentials",
 				)
 
-				return ErrMissingAnyCredentials
+				return errors.New("missing any credentials")
 			}
 
 			return action.Server(cfg, logger)

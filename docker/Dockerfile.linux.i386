@@ -10,8 +10,9 @@ LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
 
 ENTRYPOINT ["/usr/bin/prometheus-scw-sd"]
 CMD ["server"]
+HEALTHCHECK CMD ["/usr/bin/prometheus-scw-sd", "health"]
 
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=build /etc/mime.types /etc/
 
-COPY dist/binaries/prometheus-scw-sd-*-linux-386 /usr/bin/prometheus-scw-sd
+COPY bin/prometheus-scw-sd /usr/bin/prometheus-scw-sd

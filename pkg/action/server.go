@@ -2,10 +2,12 @@ package action
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"os/signal"
+	"runtime"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -17,36 +19,68 @@ import (
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
 	"github.com/promhippie/prometheus-scw-sd/pkg/middleware"
 	"github.com/promhippie/prometheus-scw-sd/pkg/version"
-	"github.com/scaleway/go-scaleway"
-	scwlog "github.com/scaleway/go-scaleway/logger"
+	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
 // Server handles the server sub-command.
 func Server(cfg *config.Config, logger log.Logger) error {
 	level.Info(logger).Log(
 		"msg", "Launching Prometheus Scaleway SD",
-		"version", version.Version,
+		"version", version.String,
 		"revision", version.Revision,
-		"date", version.BuildDate,
-		"go", version.GoVersion,
+		"date", version.Date,
+		"go", version.Go,
 	)
 
 	var gr run.Group
 
 	{
 		ctx := context.Background()
-		clients := make(map[string]*api.ScalewayAPI, len(cfg.Target.Credentials))
+		clients := make(map[string]*scw.Client, len(cfg.Target.Credentials))
 
 		for _, credential := range cfg.Target.Credentials {
-			client, err := api.NewScalewayAPI(
-				credential.Org,
-				credential.Token,
-				"",
-				credential.Region,
-				func(s *api.ScalewayAPI) {
-					s.Logger = scwlog.NewDisableLogger()
-				},
-			)
+			opts := make([]scw.ClientOption, 0)
+
+			opts = append(opts, scw.WithUserAgent(
+				fmt.Sprintf(
+					"prometheus-scw-sd/%s (%s; %s; %s)",
+					version.String,
+					runtime.Version(),
+					runtime.GOOS,
+					runtime.GOARCH,
+				),
+			))
+
+			opts = append(opts, scw.WithAuth(
+				credential.AccessKey,
+				credential.SecretKey,
+			))
+
+			if credential.Org != "" {
+				opts = append(opts, scw.WithDefaultOrganizationID(
+					credential.Org,
+				))
+			}
+
+			if credential.Zone != "" {
+				zone, err := scw.ParseZone(credential.Zone)
+
+				if err != nil {
+					level.Error(logger).Log(
+						"msg", ErrInvalidZone,
+						"project", credential.Project,
+						"zone", credential.Zone,
+					)
+
+					return ErrInvalidZone
+				}
+
+				opts = append(opts, scw.WithDefaultZone(
+					zone,
+				))
+			}
+
+			client, err := scw.NewClient(opts...)
 
 			if err != nil {
 				level.Error(logger).Log(
@@ -57,24 +91,19 @@ func Server(cfg *config.Config, logger log.Logger) error {
 				return ErrClientFailed
 			}
 
-			if err := client.CheckCredentials(); err != nil {
-				level.Error(logger).Log(
-					"msg", ErrClientForbidden,
-					"project", credential.Project,
-				)
-
-				return ErrClientForbidden
-			}
-
 			clients[credential.Project] = client
 		}
 
 		disc := Discoverer{
-			clients:   clients,
-			logger:    logger,
-			refresh:   cfg.Target.Refresh,
-			separator: ",",
-			lasts:     make(map[string]struct{}),
+			clients:        clients,
+			logger:         logger,
+			refresh:        cfg.Target.Refresh,
+			checkInstance:  cfg.Target.CheckInstance,
+			instanceZones:  cfg.Zones.Instance,
+			checkBaremetal: cfg.Target.CheckBaremetal,
+			baremetalZones: cfg.Zones.Baremetal,
+			separator:      ",",
+			lasts:          make(map[string]struct{}),
 		}
 
 		a := adapter.NewAdapter(ctx, cfg.Target.File, "scaleway-sd", disc, logger)

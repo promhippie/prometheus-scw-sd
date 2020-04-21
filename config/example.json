@@ -13,21 +13,20 @@
 		"credentials": [
 			{
 				"project": "example1",
-				"token": "",
-				"org": "",
-				"region": "par1"
+				"access_key": "",
+				"secret_key": ""
 			},
 			{
 				"project": "example2",
-				"token": "",
-				"org": "",
-				"region": "par1"
+				"access_key": "",
+				"secret_key": "",
+				"zone": "fr-par-1"
 			},
 			{
 				"project": "example3",
-				"token": "",
-				"org": "",
-				"region": "par1"
+				"access_key": "",
+				"secret_key": "",
+				"org": ""
 			}
 		]
 	}

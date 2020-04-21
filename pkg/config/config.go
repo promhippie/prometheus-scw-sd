@@ -2,10 +2,11 @@ package config
 
 // Credential defines a single project credential.
 type Credential struct {
-	Project string `json:"project" yaml:"project"`
-	Token   string `json:"token" yaml:"token"`
-	Org     string `json:"org" yaml:"org"`
-	Region  string `json:"region" yaml:"region"`
+	Project   string `json:"project" yaml:"project"`
+	AccessKey string `json:"access_key" yaml:"access_key"`
+	SecretKey string `json:"secret_key" yaml:"secret_key"`
+	Org       string `json:"org" yaml:"org"`
+	Zone      string `json:"zone" yaml:"zone"`
 }
 
 // Server defines the general server configuration.
@@ -20,17 +21,26 @@ type Logs struct {
 	Pretty bool   `json:"pretty" yaml:"pretty"`
 }
 
+// Zones defines the available zones per api endpoint.
+type Zones struct {
+	Instance  []string `json:"instance" yaml:"instance"`
+	Baremetal []string `json:"baremetal" yaml:"baremetal"`
+}
+
 // Target defines the target specific configuration.
 type Target struct {
-	File        string       `json:"file" yaml:"file"`
-	Refresh     int          `json:"refresh" yaml:"refresh"`
-	Credentials []Credential `json:"credentials" yaml:"credentials"`
+	File           string       `json:"file" yaml:"file"`
+	Refresh        int          `json:"refresh" yaml:"refresh"`
+	CheckInstance  bool         `json:"check_instance" yaml:"check_instance"`
+	CheckBaremetal bool         `json:"check_baremetal" yaml:"check_baremetal"`
+	Credentials    []Credential `json:"credentials" yaml:"credentials"`
 }
 
 // Config is a combination of all available configurations.
 type Config struct {
 	Server Server `json:"server" yaml:"server"`
 	Logs   Logs   `json:"logs" yaml:"logs"`
+	Zones  Zones  `json:"zones" yaml:"zones"`
 	Target Target `json:"target" yaml:"target"`
 }
 
