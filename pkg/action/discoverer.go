@@ -16,57 +16,60 @@ import (
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )
 
-const (
-	scwPrefix                     = model.MetaLabelPrefix + "scaleway_"
-	allowedActionsLabel           = scwPrefix + "allowed_actions"
-	archLabel                     = scwPrefix + "arch"
-	bladeLabel                    = scwPrefix + "blade"
-	bootTypeLabel                 = scwPrefix + "boot_type"
-	bootscriptIdentifierLabel     = scwPrefix + "bootscript_id"
-	bootscriptInitrdLabel         = scwPrefix + "bootscript_initrd"
-	bootscriptKernelLabel         = scwPrefix + "bootscript_kernel"
-	bootscriptTitleLabel          = scwPrefix + "bootscript_title"
-	chassisLabel                  = scwPrefix + "chassis"
-	clusterLabel                  = scwPrefix + "cluster"
-	commercialTypeLabel           = scwPrefix + "commercial_type"
-	descriptionLabel              = scwPrefix + "description"
-	domainLabel                   = scwPrefix + "domain"
-	dynamicIPRequiredLabel        = scwPrefix + "dynamic_ip_required"
-	enableIPv6Label               = scwPrefix + "enable_ipv6"
-	hostnameLabel                 = scwPrefix + "hostname"
-	hypervisorLabel               = scwPrefix + "hypervisor"
-	identifierLabel               = scwPrefix + "id"
-	imageIdentifierLabel          = scwPrefix + "image_id"
-	imageNameLabel                = scwPrefix + "image_name"
-	installHostnameLabel          = scwPrefix + "install_hostname"
-	installOsLabel                = scwPrefix + "install_os"
-	installStatusLabel            = scwPrefix + "install_status"
-	ipsLabel                      = scwPrefix + "ips"
-	ipv6Label                     = scwPrefix + "ipv6"
-	kindLabel                     = scwPrefix + "kind"
-	nameLabel                     = scwPrefix + "name"
-	nodeLabel                     = scwPrefix + "node"
-	offerLabel                    = scwPrefix + "offer"
-	orgLabel                      = scwPrefix + "org"
-	placementGroupIdentifierLabel = scwPrefix + "placement_group_id"
-	placementGroupNameLabel       = scwPrefix + "placement_group_name"
-	platformLabel                 = scwPrefix + "platform"
-	privateHostLabel              = scwPrefix + "private_host"
-	privateIPLabel                = scwPrefix + "private_ipv4"
-	projectLabel                  = scwPrefix + "project"
-	protectedLabel                = scwPrefix + "protected"
-	publicHostLabel               = scwPrefix + "public_host"
-	publicIPLabel                 = scwPrefix + "public_ipv4"
-	securityGroupIdentifierLabel  = scwPrefix + "security_group_id"
-	securityGroupNameLabel        = scwPrefix + "security_group_name"
-	stateDetailLabel              = scwPrefix + "state_detail"
-	stateLabel                    = scwPrefix + "state"
-	statusLabel                   = scwPrefix + "status"
-	tagsLabel                     = scwPrefix + "tags"
-	zoneLabel                     = scwPrefix + "zone"
-)
-
 var (
+	// providerPrefix defines the general prefix for all labels.
+	providerPrefix = model.MetaLabelPrefix + "scaleway_"
+
+	// Labels defines all available labels for this provider.
+	Labels = map[string]string{
+		"allowedActions":           providerPrefix + "allowed_actions",
+		"arch":                     providerPrefix + "arch",
+		"blade":                    providerPrefix + "blade",
+		"bootscriptIdentifier":     providerPrefix + "bootscript_id",
+		"bootscriptInitrd":         providerPrefix + "bootscript_initrd",
+		"bootscriptKernel":         providerPrefix + "bootscript_kernel",
+		"bootscriptTitle":          providerPrefix + "bootscript_title",
+		"bootType":                 providerPrefix + "boot_type",
+		"chassis":                  providerPrefix + "chassis",
+		"cluster":                  providerPrefix + "cluster",
+		"commercialType":           providerPrefix + "commercial_type",
+		"description":              providerPrefix + "description",
+		"domain":                   providerPrefix + "domain",
+		"dynamicIPRequired":        providerPrefix + "dynamic_ip_required",
+		"enableIPv6":               providerPrefix + "enable_ipv6",
+		"hostname":                 providerPrefix + "hostname",
+		"hypervisor":               providerPrefix + "hypervisor",
+		"identifier":               providerPrefix + "id",
+		"imageIdentifier":          providerPrefix + "image_id",
+		"imageName":                providerPrefix + "image_name",
+		"installHostname":          providerPrefix + "install_hostname",
+		"installOs":                providerPrefix + "install_os",
+		"installStatus":            providerPrefix + "install_status",
+		"ips":                      providerPrefix + "ips",
+		"ipv6":                     providerPrefix + "ipv6",
+		"kind":                     providerPrefix + "kind",
+		"name":                     providerPrefix + "name",
+		"node":                     providerPrefix + "node",
+		"offer":                    providerPrefix + "offer",
+		"org":                      providerPrefix + "org",
+		"placementGroupIdentifier": providerPrefix + "placement_group_id",
+		"placementGroupName":       providerPrefix + "placement_group_name",
+		"platform":                 providerPrefix + "platform",
+		"privateHost":              providerPrefix + "private_host",
+		"privateIP":                providerPrefix + "private_ipv4",
+		"project":                  providerPrefix + "project",
+		"protected":                providerPrefix + "protected",
+		"publicHost":               providerPrefix + "public_host",
+		"publicIP":                 providerPrefix + "public_ipv4",
+		"securityGroupIdentifier":  providerPrefix + "security_group_id",
+		"securityGroupName":        providerPrefix + "security_group_name",
+		"state":                    providerPrefix + "state",
+		"stateDetail":              providerPrefix + "state_detail",
+		"status":                   providerPrefix + "status",
+		"tags":                     providerPrefix + "tags",
+		"zone":                     providerPrefix + "zone",
+	}
+
 	// ErrClientFailed defines an error if the client init fails.
 	ErrClientFailed = errors.New("failed to initialize client")
 
@@ -228,43 +231,43 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						Source:  fmt.Sprintf("instance/%s", server.ID),
 						Targets: addresses,
 						Labels: model.LabelSet{
-							model.AddressLabel:                             model.LabelValue(server.PublicIP.Address.String()),
-							model.LabelName(projectLabel):                  model.LabelValue(project),
-							model.LabelName(identifierLabel):               model.LabelValue(server.ID),
-							model.LabelName(nameLabel):                     model.LabelValue(server.Name),
-							model.LabelName(orgLabel):                      model.LabelValue(server.Organization),
-							model.LabelName(allowedActionsLabel):           model.LabelValue(actionsToString(d.separator, server.AllowedActions)),
-							model.LabelName(tagsLabel):                     model.LabelValue(tagsToString(d.separator, server.Tags)),
-							model.LabelName(commercialTypeLabel):           model.LabelValue(server.CommercialType),
-							model.LabelName(dynamicIPRequiredLabel):        model.LabelValue(boolToString(server.DynamicIPRequired)),
-							model.LabelName(enableIPv6Label):               model.LabelValue(boolToString(server.EnableIPv6)),
-							model.LabelName(hostnameLabel):                 model.LabelValue(server.Hostname),
-							model.LabelName(imageIdentifierLabel):          model.LabelValue(imageIdentifier),
-							model.LabelName(imageNameLabel):                model.LabelValue(imageName),
-							model.LabelName(protectedLabel):                model.LabelValue(boolToString(server.Protected)),
-							model.LabelName(privateIPLabel):                model.LabelValue(*server.PrivateIP),
-							model.LabelName(privateHostLabel):              model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.ID)),
-							model.LabelName(publicIPLabel):                 model.LabelValue(server.PublicIP.Address.String()),
-							model.LabelName(publicHostLabel):               model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.ID)),
-							model.LabelName(stateLabel):                    model.LabelValue(server.State),
-							model.LabelName(clusterLabel):                  model.LabelValue(locationCluster),
-							model.LabelName(hypervisorLabel):               model.LabelValue(locationHypervisor),
-							model.LabelName(nodeLabel):                     model.LabelValue(locationNode),
-							model.LabelName(platformLabel):                 model.LabelValue(locationPlatform),
-							model.LabelName(ipv6Label):                     model.LabelValue(ipv6Address),
-							model.LabelName(bootscriptIdentifierLabel):     model.LabelValue(bootscriptIdentifier),
-							model.LabelName(bootscriptTitleLabel):          model.LabelValue(bootscriptTitle),
-							model.LabelName(bootscriptKernelLabel):         model.LabelValue(bootscriptKernel),
-							model.LabelName(bootscriptInitrdLabel):         model.LabelValue(bootscriptInitrd),
-							model.LabelName(bootTypeLabel):                 model.LabelValue(server.BootType),
-							model.LabelName(securityGroupIdentifierLabel):  model.LabelValue(securityGroupIdentifier),
-							model.LabelName(securityGroupNameLabel):        model.LabelValue(securityGroupName),
-							model.LabelName(stateDetailLabel):              model.LabelValue(server.StateDetail),
-							model.LabelName(archLabel):                     model.LabelValue(server.Arch),
-							model.LabelName(placementGroupIdentifierLabel): model.LabelValue(placementGroupIdentifier),
-							model.LabelName(placementGroupNameLabel):       model.LabelValue(placementGroupName),
-							model.LabelName(zoneLabel):                     model.LabelValue(server.Zone),
-							model.LabelName(kindLabel):                     model.LabelValue("instance"),
+							model.AddressLabel:                                  model.LabelValue(server.PublicIP.Address.String()),
+							model.LabelName(Labels["project"]):                  model.LabelValue(project),
+							model.LabelName(Labels["identifier"]):               model.LabelValue(server.ID),
+							model.LabelName(Labels["name"]):                     model.LabelValue(server.Name),
+							model.LabelName(Labels["org"]):                      model.LabelValue(server.Organization),
+							model.LabelName(Labels["allowedActions"]):           model.LabelValue(actionsToString(d.separator, server.AllowedActions)),
+							model.LabelName(Labels["tags"]):                     model.LabelValue(tagsToString(d.separator, server.Tags)),
+							model.LabelName(Labels["commercialType"]):           model.LabelValue(server.CommercialType),
+							model.LabelName(Labels["dynamicIPRequired"]):        model.LabelValue(boolToString(server.DynamicIPRequired)),
+							model.LabelName(Labels["enableIPv6"]):               model.LabelValue(boolToString(server.EnableIPv6)),
+							model.LabelName(Labels["hostname"]):                 model.LabelValue(server.Hostname),
+							model.LabelName(Labels["imageIdentifier"]):          model.LabelValue(imageIdentifier),
+							model.LabelName(Labels["imageName"]):                model.LabelValue(imageName),
+							model.LabelName(Labels["protected"]):                model.LabelValue(boolToString(server.Protected)),
+							model.LabelName(Labels["privateIP"]):                model.LabelValue(*server.PrivateIP),
+							model.LabelName(Labels["privateHost"]):              model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.ID)),
+							model.LabelName(Labels["publicIP"]):                 model.LabelValue(server.PublicIP.Address.String()),
+							model.LabelName(Labels["publicHost"]):               model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.ID)),
+							model.LabelName(Labels["state"]):                    model.LabelValue(server.State),
+							model.LabelName(Labels["cluster"]):                  model.LabelValue(locationCluster),
+							model.LabelName(Labels["hypervisor"]):               model.LabelValue(locationHypervisor),
+							model.LabelName(Labels["node"]):                     model.LabelValue(locationNode),
+							model.LabelName(Labels["platform"]):                 model.LabelValue(locationPlatform),
+							model.LabelName(Labels["ipv6"]):                     model.LabelValue(ipv6Address),
+							model.LabelName(Labels["bootscriptIdentifier"]):     model.LabelValue(bootscriptIdentifier),
+							model.LabelName(Labels["bootscriptTitle"]):          model.LabelValue(bootscriptTitle),
+							model.LabelName(Labels["bootscriptKernel"]):         model.LabelValue(bootscriptKernel),
+							model.LabelName(Labels["bootscriptInitrd"]):         model.LabelValue(bootscriptInitrd),
+							model.LabelName(Labels["bootType"]):                 model.LabelValue(server.BootType),
+							model.LabelName(Labels["securityGroupIdentifier"]):  model.LabelValue(securityGroupIdentifier),
+							model.LabelName(Labels["securityGroupName"]):        model.LabelValue(securityGroupName),
+							model.LabelName(Labels["stateDetail"]):              model.LabelValue(server.StateDetail),
+							model.LabelName(Labels["arch"]):                     model.LabelValue(server.Arch),
+							model.LabelName(Labels["placementGroupIdentifier"]): model.LabelValue(placementGroupIdentifier),
+							model.LabelName(Labels["placementGroupName"]):       model.LabelValue(placementGroupName),
+							model.LabelName(Labels["zone"]):                     model.LabelValue(server.Zone),
+							model.LabelName(Labels["kind"]):                     model.LabelValue("instance"),
 						},
 					}
 
@@ -359,23 +362,23 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						Source:  fmt.Sprintf("baremetal/%s", server.ID),
 						Targets: addresses,
 						Labels: model.LabelSet{
-							model.AddressLabel:                    model.LabelValue(server.IPs[0].Address.String()),
-							model.LabelName(projectLabel):         model.LabelValue(project),
-							model.LabelName(identifierLabel):      model.LabelValue(server.ID),
-							model.LabelName(orgLabel):             model.LabelValue(server.OrganizationID),
-							model.LabelName(nameLabel):            model.LabelValue(server.Name),
-							model.LabelName(descriptionLabel):     model.LabelValue(server.Description),
-							model.LabelName(statusLabel):          model.LabelValue(server.Status),
-							model.LabelName(offerLabel):           model.LabelValue(server.OfferID),
-							model.LabelName(installOsLabel):       model.LabelValue(installOs),
-							model.LabelName(installHostnameLabel): model.LabelValue(installHostname),
-							model.LabelName(installStatusLabel):   model.LabelValue(installStatus),
-							model.LabelName(tagsLabel):            model.LabelValue(tagsToString(d.separator, server.Tags)),
-							model.LabelName(ipsLabel):             model.LabelValue(ipsToString(d.separator, server.IPs)),
-							model.LabelName(domainLabel):          model.LabelValue(server.Domain),
-							model.LabelName(bootTypeLabel):        model.LabelValue(server.BootType),
-							model.LabelName(zoneLabel):            model.LabelValue(server.Zone),
-							model.LabelName(kindLabel):            model.LabelValue("baremetal"),
+							model.AddressLabel:                         model.LabelValue(server.IPs[0].Address.String()),
+							model.LabelName(Labels["project"]):         model.LabelValue(project),
+							model.LabelName(Labels["identifier"]):      model.LabelValue(server.ID),
+							model.LabelName(Labels["org"]):             model.LabelValue(server.OrganizationID),
+							model.LabelName(Labels["name"]):            model.LabelValue(server.Name),
+							model.LabelName(Labels["description"]):     model.LabelValue(server.Description),
+							model.LabelName(Labels["status"]):          model.LabelValue(server.Status),
+							model.LabelName(Labels["offer"]):           model.LabelValue(server.OfferID),
+							model.LabelName(Labels["installOs"]):       model.LabelValue(installOs),
+							model.LabelName(Labels["installHostname"]): model.LabelValue(installHostname),
+							model.LabelName(Labels["installStatus"]):   model.LabelValue(installStatus),
+							model.LabelName(Labels["tags"]):            model.LabelValue(tagsToString(d.separator, server.Tags)),
+							model.LabelName(Labels["ips"]):             model.LabelValue(ipsToString(d.separator, server.IPs)),
+							model.LabelName(Labels["domain"]):          model.LabelValue(server.Domain),
+							model.LabelName(Labels["bootType"]):        model.LabelValue(server.BootType),
+							model.LabelName(Labels["zone"]):            model.LabelValue(server.Zone),
+							model.LabelName(Labels["kind"]):            model.LabelValue("baremetal"),
 						},
 					}
 
