@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"os/signal"
@@ -15,6 +16,7 @@ import (
 	"github.com/go-kit/kit/log/level"
 	"github.com/oklog/run"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/exporter-toolkit/web"
 	"github.com/promhippie/prometheus-scw-sd/pkg/adapter"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
 	"github.com/promhippie/prometheus-scw-sd/pkg/middleware"
@@ -30,6 +32,7 @@ func Server(cfg *config.Config, logger log.Logger) error {
 		"revision", version.Revision,
 		"date", version.Date,
 		"go", version.Go,
+		"engine", cfg.Target.Engine,
 	)
 
 	var gr run.Group
@@ -124,7 +127,7 @@ func Server(cfg *config.Config, logger log.Logger) error {
 				"addr", cfg.Server.Addr,
 			)
 
-			return server.ListenAndServe()
+			return web.ListenAndServe(server, cfg.Server.Web, logger)
 		}, func(reason error) {
 			ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 			defer cancel()
@@ -194,6 +197,32 @@ func handler(cfg *config.Config, logger log.Logger) *chi.Mux {
 
 			io.WriteString(w, http.StatusText(http.StatusOK))
 		})
+
+		if cfg.Target.Engine == "http" {
+			root.Get("/sd", func(w http.ResponseWriter, r *http.Request) {
+				w.Header().Set("Content-Type", "application/json; charset=utf-8")
+
+				content, err := ioutil.ReadFile(cfg.Target.File)
+
+				if err != nil {
+					level.Info(logger).Log(
+						"msg", "Failed to read service discovery data",
+						"err", err,
+					)
+
+					http.Error(
+						w,
+						"Failed to read service discovery data",
+						http.StatusInternalServerError,
+					)
+
+					return
+				}
+
+				w.WriteHeader(http.StatusOK)
+				w.Write(content)
+			})
+		}
 	})
 
 	return mux
