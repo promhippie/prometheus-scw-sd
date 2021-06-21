@@ -489,39 +489,62 @@
       - ./service-discovery:/etc/sd
 </code></pre></div>
 
-<p>Finally the service discovery should be configured fine, let&rsquo;s start this stack with <a href="https://docs.docker.com/compose/">docker-compose</a>, you just need to execute <code>docker-compose up</code> within the directory where you have stored <code>prometheus.yml</code> and <code>docker-compose.yml</code>.</p>
+<p>If you want to secure the access to the exporter or also the HTTP service discovery endpoint you can provide a web config. You just need to provide a path to the config file in order to enable the support for it, for details about the config format look at the <a href="#web-configuration">documentation</a> section:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt"># docker-compose up
-Creating network &#34;scw-sd_default&#34; with the default driver
-Creating volume &#34;scw-sd_prometheus&#34; with default driver
-Creating scw-sd_scw-sd_1     ... done
-Creating scw-sd_prometheus_1 ... done
-Attaching to scw-sd_scw-sd_1, scw-sd_prometheus_1
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1092588Z caller=main.go:238 msg=&#34;Starting Prometheus&#34; version=&#34;(version=2.4.3, branch=HEAD, revision=167a4b4e73a8eca8df648d2d2043e21bdb9a7449)&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1093473Z caller=main.go:239 build_context=&#34;(go=go1.11.1, user=root@1e42b46043e9, date=20181004-08:42:02)&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1093727Z caller=main.go:240 host_details=&#34;(Linux 4.9.93-linuxkit-aufs #1 SMP Wed Jun 6 16:55:56 UTC 2018 x86_64 a13beb141445 (none))&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1093944Z caller=main.go:241 fd_limits=&#34;(soft=1048576, hard=1048576)&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1094111Z caller=main.go:242 vm_limits=&#34;(soft=unlimited, hard=unlimited)&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1103691Z caller=main.go:554 msg=&#34;Starting TSDB ...&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1104236Z caller=web.go:397 component=web msg=&#34;Start listening for connections&#34; address=0.0.0.0:9090
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1162682Z caller=main.go:564 msg=&#34;TSDB started&#34;
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1171396Z caller=main.go:624 msg=&#34;Loading configuration file&#34; filename=/etc/prometheus/prometheus.yml
-prometheus_1  | level=info ts=2018-10-07T16:18:45.11963Z caller=main.go:650 msg=&#34;Completed loading of configuration file&#34; filename=/etc/prometheus/prometheus.yml
-prometheus_1  | level=info ts=2018-10-07T16:18:45.1196724Z caller=main.go:523 msg=&#34;Server is ready to receive web requests.&#34;
-scw-sd_1      | level=info ts=2018-10-07T16:18:45.1296711Z msg=&#34;Launching Prometheus Scaleway SD&#34; version=0.0.0-master revision=a94cb2f date=20180924 go=go1.11
-scw-sd_1      | level=info ts=2018-10-07T16:18:45.8562717Z msg=&#34;Starting metrics server&#34; addr=0.0.0.0:9000</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">  scw-exporter:
+    image: promhippie/prometheus-scw-sd:latest
+    restart: always
+    environment:
+<span class="gi">+     - PROMETHEUS_SCW_WEB_CONFIG=path/to/web-config.json
+</span><span class="gi"></span>      - PROMETHEUS_SCW_LOG_PRETTY=true
+      - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
+      - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
+      - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
+      - PROMETHEUS_SCW_ORG=a84ef57f-c727-40c4-a236-1a81e8041ce5
+      - PROMETHEUS_SCW_REGION=par1
+    volumes:
+      - ./service-discovery:/etc/sd
+</code></pre></div>
 
-<p>That&rsquo;s all, the service discovery should be up and running. You can access <a href="https://prometheus.io">Prometheus</a> at <a href="http://localhost:9090">http://localhost:9090</a>.</p>
+<p>To avoid the dependency on a shared filesystem between this service discovery and the <a href="https://prometheus.io">Prometheus</a> configuration directory, you are able to use the new <a href="https://prometheus.io/docs/prometheus/2.28/configuration/configuration/#http_sd_config">HTTP service discovery</a> starting with <a href="https://prometheus.io">Prometheus</a> &gt;= v2.28, you just need to switch the engine for this service discovery:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">  scw-exporter:
+    image: promhippie/prometheus-scw-sd:latest
+    restart: always
+    environment:
+      - PROMETHEUS_SCW_LOG_PRETTY=true
+<span class="gi">+     - PROMETHEUS_SCW_OUTPUT_ENGINE=http
+</span><span class="gi"></span>      - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
+      - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
+      - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
+      - PROMETHEUS_SCW_ORG=a84ef57f-c727-40c4-a236-1a81e8041ce5
+      - PROMETHEUS_SCW_REGION=par1
+    volumes:
+      - ./service-discovery:/etc/sd
+</code></pre></div>
+
+<p>To use the HTTP service discovery you just need to change the <a href="https://prometheus.io">Prometheus</a> configuration mentioned above a little bit:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">scrape_configs<span class="p">:</span><span class="w">
+</span><span class="w"></span>-<span class="w"> </span>job_name<span class="p">:</span><span class="w"> </span>node<span class="w">
+</span><span class="w">  </span>http_sd_config<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>url<span class="p">:</span><span class="w"> </span>http<span class="p">:</span>//scw-sd<span class="p">:</span><span class="m">9000</span>/sd<span class="w">
+</span><span class="w">  </span>relabel_configs<span class="p">:</span><span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>source_labels<span class="p">:</span><span class="w"> </span><span class="p">[</span>__meta_scaleway_public_ipv4<span class="p">]</span><span class="w">
+</span><span class="w">    </span>replacement<span class="p">:</span><span class="w"> </span><span class="s2">&#34;${1}:9100&#34;</span><span class="w">
+</span><span class="w">    </span>target_label<span class="p">:</span><span class="w"> </span>__address__<span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>source_labels<span class="p">:</span><span class="w"> </span><span class="p">[</span>__meta_scaleway_zone<span class="p">]</span><span class="w">
+</span><span class="w">    </span>target_label<span class="p">:</span><span class="w"> </span>datacenter<span class="w">
+</span><span class="w">  </span>-<span class="w"> </span>source_labels<span class="p">:</span><span class="w"> </span><span class="p">[</span>__meta_scaleway_name<span class="p">]</span><span class="w">
+</span><span class="w">    </span>target_label<span class="p">:</span><span class="w"> </span>instance</code></pre></div>
+
+<p>Finally the service discovery should be configured fine, let&rsquo;s start this stack with <a href="https://docs.docker.com/compose/">docker-compose</a>, you just need to execute <code>docker-compose up</code> within the directory where you have stored <code>prometheus.yml</code> and <code>docker-compose.yml</code>. That&rsquo;s all, the service discovery should be up and running. You can access <a href="https://prometheus.io">Prometheus</a> at <a href="http://localhost:9090">http://localhost:9090</a>.</p>
 
 <figure>
     <img src="service-discovery.png"/> <figcaption>
             <h4>Prometheus service discovery for Hetzner</h4>
         </figcaption>
 </figure>
-
-<h2 id="kubernetes">Kubernetes</h2>
-
-<p>Currently we have not prepared a deployment for Kubernetes, but this is something we will provide for sure. Most interesting will be the integration into the <a href="https://coreos.com/operators/prometheus/docs/latest/">Prometheus Operator</a>, so stay tuned.</p>
 
 <h2 id="configuration">Configuration</h2>
 
@@ -530,32 +553,23 @@ scw-sd_1      | level=info ts=2018-10-07T16:18:45.8562717Z msg=&#34;Starting met
 <p>If you prefer to configure the service with environment variables you can see the available variables below, in case you want to configure multiple accounts with a single service you are forced to use the configuration file as the environment variables are limited to a single account. As the service is pretty lightweight you can even start an instance per account and configure it entirely by the variables, it&rsquo;s up to you.</p>
 
 <dl>
-<dt>PROMETHEUS_SCW_CONFIG<br /></dt>
-<dd>Path to Scaleway configuration file, optionally, required for multi credentials<br />
-<br /></dd>
-<dt>PROMETHEUS_SCW_ACCESS_KEY<br /></dt>
-<dd>Access key for the Scaleway API, required for authentication<br />
-<br /></dd>
-<dt>PROMETHEUS_SCW_SECRET_KEY<br /></dt>
-<dd>Secret key for the Scaleway API, required for authentication<br />
-<br /></dd>
-<dt>PROMETHEUS_SCW_ORG<br /></dt>
-<dd>Organization for the Scaleway API, optionally<br />
-<br /></dd>
-<dt>PROMETHEUS_SCW_ZONE<br /></dt>
-<dd>Zone for the Scaleway API, optionally<br />
-<br /></dd>
 <dt>PROMETHEUS_SCW_LOG_LEVEL<br /></dt>
 <dd>Only log messages with given severity, defaults to <code>info</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_LOG_PRETTY<br /></dt>
-<dd>Enable pretty messages for logging, defaults to <code>true</code><br />
+<dd>Enable pretty messages for logging, defaults to <code>false</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_WEB_ADDRESS<br /></dt>
 <dd>Address to bind the metrics server, defaults to <code>0.0.0.0:9000</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_WEB_PATH<br /></dt>
 <dd>Path to bind the metrics server, defaults to <code>/metrics</code><br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_WEB_CONFIG<br /></dt>
+<dd>Path to web-config file<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_OUTPUT_ENGINE<br /></dt>
+<dd>Enabled engine like file or http, defaults to <code>file</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_OUTPUT_FILE<br /></dt>
 <dd>Path to write the file_sd config, defaults to <code>/etc/prometheus/scw.json</code><br />
@@ -564,12 +578,36 @@ scw-sd_1      | level=info ts=2018-10-07T16:18:45.8562717Z msg=&#34;Starting met
 <dd>Discovery refresh interval in seconds, defaults to <code>30</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_CHECK_INSTANCE<br /></dt>
-<dd>Enable fetching servers from instance API, defaults to <code>true</code><br />
+<dd>Enable instance gathering, defaults to <code>true</code><br />
 <br /></dd>
 <dt>PROMETHEUS_SCW_CHECK_BAREMETAL<br /></dt>
-<dd>Enable fetching servers from baremetal API, defaults to <code>true</code><br />
+<dd>Enable baremetal gathering, defaults to <code>true</code><br />
 <br /></dd>
+<dt>PROMETHEUS_SCW_ACESS_KEY<br /></dt>
+<dd>Access key for the Scaleway API<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_SECRET_KEY<br /></dt>
+<dd>Secret key for the Scaleway API<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_ORG<br /></dt>
+<dd>Organization for the Scaleway API<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_ZONE<br /></dt>
+<dd>Zone for the Scaleway API<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_CONFIG<br /></dt>
+<dd>Path to Scaleway configuration file<br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_INSTANCE_ZONES<br /></dt>
+<dd>List of available zones for instance API, comma-separated list, defaults to <code>fr-par-1, nl-ams-1</code><br />
+<br /></dd>
+<dt>PROMETHEUS_SCW_BAREMETAL_ZONES<br /></dt>
+<dd>List of available zones for baremetal API, comma-separated list, defaults to <code>fr-par-2</code><br /></dd>
 </dl>
+
+<h3 id="web-configuration">Web Configuration</h3>
+
+<p>If you want to secure the service by TLS or by some basic authentication you can provide a <code>YAML</code> configuration file whch follows the <a href="https://prometheus.io">Prometheus</a> toolkit format. You can see a full configration example within the <a href="https://github.com/prometheus/exporter-toolkit/blob/master/docs/web-configuration.md">toolkit documentation</a>.</p>
 
 <h3 id="configuration-file">Configuration file</h3>
 
@@ -581,11 +619,13 @@ scw-sd_1      | level=info ts=2018-10-07T16:18:45.8562717Z msg=&#34;Starting met
 <li><code>__address__</code><br /></li>
 <li><code>__meta_scaleway_allowed_actions</code><br /></li>
 <li><code>__meta_scaleway_arch</code><br /></li>
+<li><code>__meta_scaleway_blade</code><br /></li>
 <li><code>__meta_scaleway_boot_type</code><br /></li>
 <li><code>__meta_scaleway_bootscript_id</code><br /></li>
 <li><code>__meta_scaleway_bootscript_initrd</code><br /></li>
 <li><code>__meta_scaleway_bootscript_kernel</code><br /></li>
 <li><code>__meta_scaleway_bootscript_title</code><br /></li>
+<li><code>__meta_scaleway_chassis</code><br /></li>
 <li><code>__meta_scaleway_cluster</code><br /></li>
 <li><code>__meta_scaleway_commercial_type</code><br /></li>
 <li><code>__meta_scaleway_description</code><br /></li>
@@ -618,21 +658,20 @@ scw-sd_1      | level=info ts=2018-10-07T16:18:45.8562717Z msg=&#34;Starting met
 <li><code>__meta_scaleway_public_ipv4</code><br /></li>
 <li><code>__meta_scaleway_security_group_id</code><br /></li>
 <li><code>__meta_scaleway_security_group_name</code><br /></li>
-<li><code>__meta_scaleway_state_detail</code><br /></li>
 <li><code>__meta_scaleway_state</code><br /></li>
+<li><code>__meta_scaleway_state_detail</code><br /></li>
 <li><code>__meta_scaleway_status</code><br /></li>
 <li><code>__meta_scaleway_tags</code><br /></li>
-<li><code>__meta_scaleway_zone</code><br />
-<br /></li>
+<li><code>__meta_scaleway_zone</code><br /></li>
 </ul>
 
 <h2 id="metrics">Metrics</h2>
 
 <dl>
-<dt>prometheus_scw_sd_request_duration_seconds<br /></dt>
+<dt>prometheus_scw_sd_request_duration_seconds{project, kind, zone}<br /></dt>
 <dd>Histogram of latencies for requests to the Scaleway API<br />
 <br /></dd>
-<dt>prometheus_scw_sd_request_failures_total<br /></dt>
+<dt>prometheus_scw_sd_request_failures_total{project, kind, zone}<br /></dt>
 <dd>Total number of failed requests to the Scaleway API<br /></dd>
 </dl>
 
