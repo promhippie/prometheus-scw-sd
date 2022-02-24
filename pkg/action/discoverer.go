@@ -11,7 +11,7 @@ import (
 	"github.com/go-kit/kit/log/level"
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/discovery/targetgroup"
-	baremetal "github.com/scaleway/scaleway-sdk-go/api/baremetal/v1alpha1"
+	baremetal "github.com/scaleway/scaleway-sdk-go/api/baremetal/v1"
 	instance "github.com/scaleway/scaleway-sdk-go/api/instance/v1"
 	"github.com/scaleway/scaleway-sdk-go/scw"
 )

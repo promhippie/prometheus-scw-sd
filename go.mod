@@ -13,7 +13,7 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1
 	github.com/prometheus/prometheus v1.8.2-0.20210331101223-3cafc58827d1
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.7.0.20210223165440-c65ae3540d44
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9
 	github.com/urfave/cli/v2 v2.3.0
 	gopkg.in/yaml.v2 v2.4.0
 )
