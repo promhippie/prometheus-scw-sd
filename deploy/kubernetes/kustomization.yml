@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - servicemonitor.yml
+  - service.yml
+  - deployment.yml
+
+configMapGenerator:
+  - name: prometheus-scw-sd
+    literals:
+      - PROMETHEUS_SCW_OUTPUT_ENGINE=http
+
+secretGenerator:
+  - name: prometheus-scw-sd
+    literals: []
+
+images:
+  - name: prometheus-scw-sd
+    newName: quay.io/promhippie/prometheus-scw-sd
+    newTag: latest
+
+...
