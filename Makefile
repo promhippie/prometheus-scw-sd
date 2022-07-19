@@ -196,5 +196,5 @@ labels:
 	go run hack/generate-labels-docs.go
 
 .PHONY: watch
-watch: $(REFLEX)
+watch:
 	$(REFLEX) -c reflex.conf
