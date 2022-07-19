@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: prometheus-scw-sd
+  labels:
+    app.kubernetes.io/name: prometheus-scw-sd
+
+spec:
+  replicas: 1
+
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-scw-sd
+
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prometheus-scw-sd
+
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+
+      containers:
+        - name: server
+          image: prometheus-scw-sd
+          imagePullPolicy: Always
+
+          envFrom:
+            - configMapRef:
+                name: prometheus-scw-sd
+            - secretRef:
+                name: prometheus-scw-sd
+
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+
+...
