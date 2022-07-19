@@ -3,7 +3,7 @@ package command
 import (
 	"errors"
 
-	"github.com/go-kit/kit/log/level"
+	"github.com/go-kit/log/level"
 	"github.com/promhippie/prometheus-scw-sd/pkg/action"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
 	"github.com/urfave/cli/v2"
@@ -150,7 +150,7 @@ func ServerFlags(cfg *config.Config) []cli.Flag {
 			Name:    "scw.access_key",
 			Value:   "",
 			Usage:   "Access key for the Scaleway API",
-			EnvVars: []string{"PROMETHEUS_SCW_ACESS_KEY"},
+			EnvVars: []string{"PROMETHEUS_SCW_ACCESS_KEY"},
 		},
 		&cli.StringFlag{
 			Name:    "scw.secret_key",

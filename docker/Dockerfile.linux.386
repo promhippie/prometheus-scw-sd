@@ -1,13 +1,9 @@
-FROM webhippie/alpine:latest@sha256:2651f60cb5d03db978d3f508a19ee50acb08960bef25ccd245403e171f5d0d5b AS build
+FROM i386/alpine:3.15@sha256:51103b3f2993cbc1b45ff9d941b5d461484002792e02aa29580ec5282de719d4 AS build
 RUN apk add --no-cache ca-certificates mailcap
 
 FROM scratch
 
-LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
-  org.label-schema.name="Prometheus Scaleway SD" \
-  org.label-schema.vendor="Thomas Boerger" \
-  org.label-schema.schema-version="1.0"
-
+EXPOSE 9000
 ENTRYPOINT ["/usr/bin/prometheus-scw-sd"]
 CMD ["server"]
 HEALTHCHECK CMD ["/usr/bin/prometheus-scw-sd", "health"]
