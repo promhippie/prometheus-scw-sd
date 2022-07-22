@@ -11,9 +11,12 @@ configMapGenerator:
   - name: prometheus-scw-sd
     literals:
       - PROMETHEUS_SCW_OUTPUT_ENGINE=http
+      - PROMETHEUS_SCW_OUTPUT_FILE=/etc/prometheus/scw.json
 
 secretGenerator:
   - name: prometheus-scw-sd
+    literals: []
+  - name: prometheus-scw-files
     literals: []
 
 images:
