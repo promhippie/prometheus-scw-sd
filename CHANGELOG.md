@@ -1,10 +1,11 @@
-# Changelog for unreleased
+# Changelog for 1.2.0
 
-The following sections list the changes for unreleased.
+The following sections list the changes for 1.2.0.
 
 ## Summary
 
  * Fix #106: Resolve typo within environment variables
+ * Enh #118: Improve doucmentation and repo structure
 
 ## Details
 
@@ -14,17 +15,6 @@ The following sections list the changes for unreleased.
    also solved a typo within the documentation within the docker-compose examples.
 
    https://github.com/promhippie/prometheus-scw-sd/issues/106
-
-
-# Changelog for 1.2.0
-
-The following sections list the changes for 1.2.0.
-
-## Summary
-
- * Enh #118: Improve doucmentation and repo structure
-
-## Details
 
  * Enhancement #118: Improve doucmentation and repo structure
 
