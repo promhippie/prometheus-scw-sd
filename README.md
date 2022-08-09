@@ -50,8 +50,8 @@ Apache-2.0
 Copyright (c) 2018 Thomas Boerger <thomas@webhippie.de>
 ```
 
-[releases]: https://github.com/promhippie/prometheus-hcloud-sd/releases
-[dockerhub]: https://hub.docker.com/r/promhippie/prometheus-hcloud-sd/tags/
-[quayio]: https://quay.io/repository/promhippie/prometheus-hcloud-sd?tab=tags
-[docs]: https://promhippie.github.io/prometheus-hcloud-sd/#getting-started
+[releases]: https://github.com/promhippie/prometheus-scw-sd/releases
+[dockerhub]: https://hub.docker.com/r/promhippie/prometheus-scw-sd/tags/
+[quayio]: https://quay.io/repository/promhippie/prometheus-scw-sd?tab=tags
+[docs]: https://promhippie.github.io/prometheus-scw-sd/#getting-started
 [golang]: http://golang.org/doc/install.html
