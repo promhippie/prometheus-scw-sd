@@ -16,6 +16,25 @@ The following sections list the changes for unreleased.
    https://github.com/promhippie/prometheus-scw-sd/issues/106
 
 
+# Changelog for 1.2.0
+
+The following sections list the changes for 1.2.0.
+
+## Summary
+
+ * Enh #118: Improve doucmentation and repo structure
+
+## Details
+
+ * Enhancement #118: Improve doucmentation and repo structure
+
+   We have improved the available documentation pretty hard and we also added documentation how
+   to install this service discovery via Helm or Kustomize on Kubernetes. Beside that we are
+   testing to build the bundled Kustomize manifests now.
+
+   https://github.com/promhippie/prometheus-scw-sd/pull/118
+
+
 # Changelog for 1.1.0
 
 The following sections list the changes for 1.1.0.
