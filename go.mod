@@ -12,7 +12,7 @@ require (
 	github.com/prometheus/exporter-toolkit v0.8.2
 	github.com/prometheus/prometheus v1.8.2-0.20210331101223-3cafc58827d1
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.13
-	github.com/urfave/cli/v2 v2.24.3
+	github.com/urfave/cli/v2 v2.24.4
 	gopkg.in/yaml.v3 v3.0.1
 )
 
