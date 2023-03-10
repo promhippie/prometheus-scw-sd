@@ -25,10 +25,6 @@ var (
 		"allowedActions":           providerPrefix + "allowed_actions",
 		"arch":                     providerPrefix + "arch",
 		"blade":                    providerPrefix + "blade",
-		"bootscriptIdentifier":     providerPrefix + "bootscript_id",
-		"bootscriptInitrd":         providerPrefix + "bootscript_initrd",
-		"bootscriptKernel":         providerPrefix + "bootscript_kernel",
-		"bootscriptTitle":          providerPrefix + "bootscript_title",
 		"bootType":                 providerPrefix + "boot_type",
 		"chassis":                  providerPrefix + "chassis",
 		"cluster":                  providerPrefix + "cluster",
@@ -173,10 +169,6 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						locationHypervisor       string
 						locationNode             string
 						locationPlatform         string
-						bootscriptIdentifier     string
-						bootscriptTitle          string
-						bootscriptKernel         string
-						bootscriptInitrd         string
 						securityGroupIdentifier  string
 						securityGroupName        string
 						placementGroupIdentifier string
@@ -194,13 +186,6 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						locationHypervisor = server.Location.HypervisorID
 						locationNode = server.Location.NodeID
 						locationPlatform = server.Location.PlatformID
-					}
-
-					if server.Bootscript != nil {
-						bootscriptIdentifier = server.Bootscript.ID
-						bootscriptTitle = server.Bootscript.Title
-						bootscriptKernel = server.Bootscript.Kernel
-						bootscriptInitrd = server.Bootscript.Initrd
 					}
 
 					if server.SecurityGroup != nil {
@@ -255,10 +240,6 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 							model.LabelName(Labels["node"]):                     model.LabelValue(locationNode),
 							model.LabelName(Labels["platform"]):                 model.LabelValue(locationPlatform),
 							model.LabelName(Labels["ipv6"]):                     model.LabelValue(ipv6Address),
-							model.LabelName(Labels["bootscriptIdentifier"]):     model.LabelValue(bootscriptIdentifier),
-							model.LabelName(Labels["bootscriptTitle"]):          model.LabelValue(bootscriptTitle),
-							model.LabelName(Labels["bootscriptKernel"]):         model.LabelValue(bootscriptKernel),
-							model.LabelName(Labels["bootscriptInitrd"]):         model.LabelValue(bootscriptInitrd),
 							model.LabelName(Labels["bootType"]):                 model.LabelValue(server.BootType),
 							model.LabelName(Labels["securityGroupIdentifier"]):  model.LabelValue(securityGroupIdentifier),
 							model.LabelName(Labels["securityGroupName"]):        model.LabelValue(securityGroupName),
