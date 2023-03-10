@@ -3,10 +3,6 @@
 * `__meta_scaleway_arch`
 * `__meta_scaleway_blade`
 * `__meta_scaleway_boot_type`
-* `__meta_scaleway_bootscript_id`
-* `__meta_scaleway_bootscript_initrd`
-* `__meta_scaleway_bootscript_kernel`
-* `__meta_scaleway_bootscript_title`
 * `__meta_scaleway_chassis`
 * `__meta_scaleway_cluster`
 * `__meta_scaleway_commercial_type`
