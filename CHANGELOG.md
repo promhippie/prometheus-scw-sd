@@ -33,8 +33,8 @@ The following sections list the changes for 1.1.0.
 
  * Chg #15: Use bingo for development tooling
  * Chg #16: Update Go version and dependencies
- * Chg #29: Improvements for automated documentation
  * Chg #17: Drop dariwn/386 release builds
+ * Chg #29: Improvements for automated documentation
  * Chg #30: Integrate new HTTP service discovery handler
  * Chg #31: Integrate standard web config
 
@@ -55,6 +55,13 @@ The following sections list the changes for 1.1.0.
 
    https://github.com/promhippie/prometheus-scw-sd/issues/16
 
+ * Change #17: Drop dariwn/386 release builds
+
+   We dropped the build of 386 builds on Darwin as this architecture is not supported by current Go
+   versions anymore.
+
+   https://github.com/promhippie/prometheus-scw-sd/issues/17
+
  * Change #29: Improvements for automated documentation
 
    We have added some simple scripts that gets executed by Drone to keep moving documentation
@@ -62,13 +69,6 @@ The following sections list the changes for 1.1.0.
    need to update the docs related to that manually anymore.
 
    https://github.com/promhippie/prometheus-scw-sd/pull/29
-
- * Change #17: Drop dariwn/386 release builds
-
-   We dropped the build of 386 builds on Darwin as this architecture is not supported by current Go
-   versions anymore.
-
-   https://github.com/promhippie/prometheus-scw-sd/issues/17
 
  * Change #30: Integrate new HTTP service discovery handler
 
@@ -140,20 +140,27 @@ The following sections list the changes for 0.3.0.
 
 ## Summary
 
- * Chg #9: Define healthcheck command
+ * Chg #4: Switch to cloud.drone.io
+ * Chg #5: Add support for server tags
  * Chg #6: Support for multiple accounts
  * Chg #6: Drop region requirement
- * Chg #5: Add support for server tags
- * Chg #4: Switch to cloud.drone.io
+ * Chg #9: Define healthcheck command
 
 ## Details
 
- * Change #9: Define healthcheck command
+ * Change #4: Switch to cloud.drone.io
 
-   To check the health status of the service discovery especially within Docker we added a simple
-   subcommand which checks the healthz endpoint to show if the service is up and running.
+   We don't wanted to maintain our own Drone infrastructure anymore, since there is
+   cloud.drone.io available for free we switched the pipelines over to it.
 
-   https://github.com/promhippie/prometheus-scw-sd/pull/9
+   https://github.com/promhippie/prometheus-scw-sd/pull/4
+
+ * Change #5: Add support for server tags
+
+   Since Scaleway supports tags for servers we should also map these labels to the exported JSON
+   file.
+
+   https://github.com/promhippie/prometheus-scw-sd/pull/5
 
  * Change #6: Support for multiple accounts
 
@@ -170,19 +177,12 @@ The following sections list the changes for 0.3.0.
 
    https://github.com/promhippie/prometheus-scw-sd/pull/6
 
- * Change #5: Add support for server tags
+ * Change #9: Define healthcheck command
 
-   Since Scaleway supports tags for servers we should also map these labels to the exported JSON
-   file.
+   To check the health status of the service discovery especially within Docker we added a simple
+   subcommand which checks the healthz endpoint to show if the service is up and running.
 
-   https://github.com/promhippie/prometheus-scw-sd/pull/5
-
- * Change #4: Switch to cloud.drone.io
-
-   We don't wanted to maintain our own Drone infrastructure anymore, since there is
-   cloud.drone.io available for free we switched the pipelines over to it.
-
-   https://github.com/promhippie/prometheus-scw-sd/pull/4
+   https://github.com/promhippie/prometheus-scw-sd/pull/9
 
 
 # Changelog for 0.2.0
