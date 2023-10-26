@@ -41,6 +41,30 @@ func Server(cfg *config.Config, logger log.Logger) error {
 		clients := make(map[string]*scw.Client, len(cfg.Target.Credentials))
 
 		for _, credential := range cfg.Target.Credentials {
+			accessKey, err := config.Value(credential.AccessKey)
+
+			if err != nil {
+				level.Error(logger).Log(
+					"msg", "Failed to read access key secret",
+					"project", credential.Project,
+					"err", err,
+				)
+
+				return fmt.Errorf("failed to read access key secret for %s", credential.Project)
+			}
+
+			secretKey, err := config.Value(credential.SecretKey)
+
+			if err != nil {
+				level.Error(logger).Log(
+					"msg", "Failed to read secret key secret",
+					"project", credential.Project,
+					"err", err,
+				)
+
+				return fmt.Errorf("failed to read secret key secret for %s", credential.Project)
+			}
+
 			opts := make([]scw.ClientOption, 0)
 
 			opts = append(opts, scw.WithUserAgent(
@@ -54,8 +78,8 @@ func Server(cfg *config.Config, logger log.Logger) error {
 			))
 
 			opts = append(opts, scw.WithAuth(
-				credential.AccessKey,
-				credential.SecretKey,
+				accessKey,
+				secretKey,
 			))
 
 			if credential.Org != "" {
