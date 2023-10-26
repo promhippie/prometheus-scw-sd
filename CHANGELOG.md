@@ -1,3 +1,30 @@
+# Changelog for 1.3.0
+
+The following sections list the changes for 1.3.0.
+
+## Summary
+
+ * Chg #212: Read secrets form files
+ * Enh #212: Update all releated dependencies
+
+## Details
+
+ * Change #212: Read secrets form files
+
+   We have added proper support to load secrets like tokens from files or from base64-encoded
+   strings. Just provide the flags or environment variables with a DSN formatted string like
+   `file://path/to/file` or `base64://Zm9vYmFy`.
+
+   https://github.com/promhippie/prometheus-scw-sd/issues/212
+
+ * Enhancement #212: Update all releated dependencies
+
+   We've updated all dependencies to the latest available versions, including more current
+   versions of build tools and used Go version to build the binaries.
+
+   https://github.com/promhippie/prometheus-scw-sd/issues/212
+
+
 # Changelog for 1.2.0
 
 The following sections list the changes for 1.2.0.
