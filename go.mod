@@ -8,7 +8,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/oklog/run v1.1.0
 	github.com/prometheus/client_golang v1.20.1
-	github.com/prometheus/common v0.55.0
+	github.com/prometheus/common v0.56.0
 	github.com/prometheus/exporter-toolkit v0.11.0
 	github.com/prometheus/prometheus v1.8.2-0.20210220213500-8c8de46003d1
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26
@@ -34,8 +34,8 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
-	golang.org/x/crypto v0.24.0 // indirect
-	golang.org/x/net v0.26.0 // indirect
+	golang.org/x/crypto v0.25.0 // indirect
+	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/oauth2 v0.21.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
