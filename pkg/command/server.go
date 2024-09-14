@@ -3,7 +3,6 @@ package command
 import (
 	"errors"
 
-	"github.com/go-kit/log/level"
 	"github.com/promhippie/prometheus-scw-sd/pkg/action"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
 	"github.com/urfave/cli/v2"
@@ -26,8 +25,7 @@ func Server(cfg *config.Config) *cli.Command {
 
 			if c.IsSet("scw.config") {
 				if err := readConfig(c.String("scw.config"), cfg); err != nil {
-					level.Error(logger).Log(
-						"msg", "Failed to read config",
+					logger.Error("Failed to read config",
 						"err", err,
 					)
 
@@ -36,10 +34,7 @@ func Server(cfg *config.Config) *cli.Command {
 			}
 
 			if cfg.Target.File == "" {
-				level.Error(logger).Log(
-					"msg", "Missing path for output.file",
-				)
-
+				logger.Error("Missing path for output.file")
 				return errors.New("missing path for output.file")
 			}
 
@@ -58,27 +53,18 @@ func Server(cfg *config.Config) *cli.Command {
 				)
 
 				if credentials.AccessKey == "" {
-					level.Error(logger).Log(
-						"msg", "Missing required scw.access_key",
-					)
-
+					logger.Error("Missing required scw.access_key")
 					return errors.New("missing required scw.access_key")
 				}
 
 				if credentials.SecretKey == "" {
-					level.Error(logger).Log(
-						"msg", "Missing required scw.secret_key",
-					)
-
+					logger.Error("Missing required scw.secret_key")
 					return errors.New("missing required scw.secret_key")
 				}
 			}
 
 			if len(cfg.Target.Credentials) == 0 {
-				level.Error(logger).Log(
-					"msg", "Missing any credentials",
-				)
-
+				logger.Error("Missing any credentials")
 				return errors.New("missing any credentials")
 			}
 
