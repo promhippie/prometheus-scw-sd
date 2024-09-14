@@ -2,13 +2,11 @@ package action
 
 import (
 	"context"
-	"errors"
 	"fmt"
+	"log/slog"
 	"strings"
 	"time"
 
-	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/discovery/targetgroup"
 	baremetal "github.com/scaleway/scaleway-sdk-go/api/baremetal/v1"
@@ -65,21 +63,12 @@ var (
 		"tags":                     providerPrefix + "tags",
 		"zone":                     providerPrefix + "zone",
 	}
-
-	// ErrClientFailed defines an error if the client init fails.
-	ErrClientFailed = errors.New("failed to initialize client")
-
-	// ErrClientForbidden defines an error if the authentication fails.
-	ErrClientForbidden = errors.New("failed to authenticate client")
-
-	// ErrInvalidZone defines an error if an invalid zone have been provided.
-	ErrInvalidZone = errors.New("invalid zone provided")
 )
 
 // Discoverer implements the Prometheus discoverer interface.
 type Discoverer struct {
 	clients        map[string]*scw.Client
-	logger         log.Logger
+	logger         *slog.Logger
 	refresh        int
 	checkInstance  bool
 	instanceZones  []string
@@ -141,8 +130,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 				requestDuration.WithLabelValues(project, "instance", zone.String()).Observe(time.Since(now).Seconds())
 
 				if err != nil {
-					level.Warn(d.logger).Log(
-						"msg", "Failed to fetch servers",
+					d.logger.Warn("Failed to fetch servers",
 						"project", project,
 						"kind", "instance",
 						"zone", zone,
@@ -153,8 +141,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 					continue
 				}
 
-				level.Debug(d.logger).Log(
-					"msg", "Requested servers",
+				d.logger.Debug("Requested servers",
 					"project", project,
 					"kind", "instance",
 					"zone", zone,
@@ -252,8 +239,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						},
 					}
 
-					level.Debug(d.logger).Log(
-						"msg", "Server added",
+					d.logger.Debug("Server added",
 						"project", project,
 						"kind", "instance",
 						"zone", zone,
@@ -294,8 +280,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 				requestDuration.WithLabelValues(project, "baremetal", zone.String()).Observe(time.Since(now).Seconds())
 
 				if err != nil {
-					level.Warn(d.logger).Log(
-						"msg", "Failed to fetch servers",
+					d.logger.Warn("Failed to fetch servers",
 						"project", project,
 						"kind", "baremetal",
 						"zone", zone,
@@ -306,8 +291,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 					continue
 				}
 
-				level.Debug(d.logger).Log(
-					"msg", "Requested servers",
+				d.logger.Debug("Requested servers",
 					"project", project,
 					"kind", "baremetal",
 					"zone", zone,
@@ -363,8 +347,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						},
 					}
 
-					level.Debug(d.logger).Log(
-						"msg", "Server added",
+					d.logger.Debug("Server added",
 						"project", project,
 						"kind", "baremetal",
 						"zone", zone,
@@ -380,8 +363,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 
 	for k := range d.lasts {
 		if _, ok := current[k]; !ok {
-			level.Debug(d.logger).Log(
-				"msg", "Server deleted",
+			d.logger.Debug("Server deleted",
 				"source", k,
 			)
 

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,8 +12,6 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/oklog/run"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/exporter-toolkit/web"
@@ -24,9 +23,8 @@ import (
 )
 
 // Server handles the server sub-command.
-func Server(cfg *config.Config, logger log.Logger) error {
-	level.Info(logger).Log(
-		"msg", "Launching Prometheus Scaleway SD",
+func Server(cfg *config.Config, logger *slog.Logger) error {
+	logger.Info("Launching Prometheus Scaleway SD",
 		"version", version.String,
 		"revision", version.Revision,
 		"date", version.Date,
@@ -44,8 +42,7 @@ func Server(cfg *config.Config, logger log.Logger) error {
 			accessKey, err := config.Value(credential.AccessKey)
 
 			if err != nil {
-				level.Error(logger).Log(
-					"msg", "Failed to read access key secret",
+				logger.Error("Failed to read access key secret",
 					"project", credential.Project,
 					"err", err,
 				)
@@ -56,8 +53,7 @@ func Server(cfg *config.Config, logger log.Logger) error {
 			secretKey, err := config.Value(credential.SecretKey)
 
 			if err != nil {
-				level.Error(logger).Log(
-					"msg", "Failed to read secret key secret",
+				logger.Error("Failed to read secret key secret",
 					"project", credential.Project,
 					"err", err,
 				)
@@ -92,13 +88,12 @@ func Server(cfg *config.Config, logger log.Logger) error {
 				zone, err := scw.ParseZone(credential.Zone)
 
 				if err != nil {
-					level.Error(logger).Log(
-						"msg", ErrInvalidZone,
+					logger.Error("Invalid zone provided",
 						"project", credential.Project,
 						"zone", credential.Zone,
 					)
 
-					return ErrInvalidZone
+					return fmt.Errorf("invalid zone provided")
 				}
 
 				opts = append(opts, scw.WithDefaultZone(
@@ -109,12 +104,11 @@ func Server(cfg *config.Config, logger log.Logger) error {
 			client, err := scw.NewClient(opts...)
 
 			if err != nil {
-				level.Error(logger).Log(
-					"msg", ErrClientFailed,
+				logger.Error("Failed to initialize client",
 					"project", credential.Project,
 				)
 
-				return ErrClientFailed
+				return fmt.Errorf("failed to initialize client")
 			}
 
 			clients[credential.Project] = client
@@ -145,9 +139,8 @@ func Server(cfg *config.Config, logger log.Logger) error {
 		}
 
 		gr.Add(func() error {
-			level.Info(logger).Log(
-				"msg", "Starting metrics server",
-				"addr", cfg.Server.Addr,
+			logger.Info("Starting metrics server",
+				"address", cfg.Server.Addr,
 			)
 
 			return web.ListenAndServe(
@@ -164,16 +157,14 @@ func Server(cfg *config.Config, logger log.Logger) error {
 			defer cancel()
 
 			if err := server.Shutdown(ctx); err != nil {
-				level.Error(logger).Log(
-					"msg", "Failed to shutdown metrics gracefully",
+				logger.Error("Failed to shutdown metrics gracefully",
 					"err", err,
 				)
 
 				return
 			}
 
-			level.Info(logger).Log(
-				"msg", "Metrics shutdown gracefully",
+			logger.Info("Metrics shutdown gracefully",
 				"reason", reason,
 			)
 		})
@@ -196,7 +187,7 @@ func Server(cfg *config.Config, logger log.Logger) error {
 	return gr.Run()
 }
 
-func handler(cfg *config.Config, logger log.Logger) *chi.Mux {
+func handler(cfg *config.Config, logger *slog.Logger) *chi.Mux {
 	mux := chi.NewRouter()
 	mux.Use(middleware.Recoverer(logger))
 	mux.Use(middleware.RealIP)
@@ -236,8 +227,7 @@ func handler(cfg *config.Config, logger log.Logger) *chi.Mux {
 				content, err := os.ReadFile(cfg.Target.File)
 
 				if err != nil {
-					level.Info(logger).Log(
-						"msg", "Failed to read service discovery data",
+					logger.Error("Failed to read service discovery data",
 						"err", err,
 					)
 
