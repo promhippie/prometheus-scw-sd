@@ -4,11 +4,10 @@ go 1.23.0
 
 require (
 	github.com/go-chi/chi/v5 v5.1.0
-	github.com/go-kit/log v0.2.1
 	github.com/joho/godotenv v1.5.1
 	github.com/oklog/run v1.1.0
-	github.com/prometheus/client_golang v1.20.1
-	github.com/prometheus/common v0.59.0
+	github.com/prometheus/client_golang v1.20.4
+	github.com/prometheus/common v0.60.0
 	github.com/prometheus/exporter-toolkit v0.13.0
 	github.com/prometheus/prometheus v1.8.2-0.20210220213500-8c8de46003d1
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26
@@ -24,6 +23,7 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-kit/kit v0.13.0 // indirect
+	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
@@ -36,12 +36,12 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
-	golang.org/x/crypto v0.26.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/oauth2 v0.22.0 // indirect
+	golang.org/x/crypto v0.27.0 // indirect
+	golang.org/x/net v0.29.0 // indirect
+	golang.org/x/oauth2 v0.23.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.23.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
+	golang.org/x/text v0.18.0 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
