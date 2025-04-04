@@ -39,7 +39,7 @@ type Zones struct {
 type Target struct {
 	Engine         string       `json:"engine" yaml:"engine"`
 	File           string       `json:"file" yaml:"file"`
-	Refresh        int          `json:"refresh" yaml:"refresh"`
+	Refresh        int64        `json:"refresh" yaml:"refresh"`
 	CheckInstance  bool         `json:"check_instance" yaml:"check_instance"`
 	CheckBaremetal bool         `json:"check_baremetal" yaml:"check_baremetal"`
 	Credentials    []Credential `json:"credentials" yaml:"credentials"`

@@ -1,11 +1,12 @@
 package command
 
 import (
+	"context"
 	"errors"
 
 	"github.com/promhippie/prometheus-scw-sd/pkg/action"
 	"github.com/promhippie/prometheus-scw-sd/pkg/config"
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 )
 
 // Server provides the sub-command to start the server.
@@ -14,17 +15,17 @@ func Server(cfg *config.Config) *cli.Command {
 		Name:  "server",
 		Usage: "Start integrated server",
 		Flags: ServerFlags(cfg),
-		Before: func(c *cli.Context) error {
-			cfg.Zones.Instance = c.StringSlice("scw.instance_zone")
-			cfg.Zones.Baremetal = c.StringSlice("scw.baremetal_zone")
+		Before: func(ctx context.Context, cmd *cli.Command) (context.Context, error) {
+			cfg.Zones.Instance = cmd.StringSlice("scw.instance_zone")
+			cfg.Zones.Baremetal = cmd.StringSlice("scw.baremetal_zone")
 
-			return nil
+			return ctx, nil
 		},
-		Action: func(c *cli.Context) error {
+		Action: func(_ context.Context, cmd *cli.Command) error {
 			logger := setupLogger(cfg)
 
-			if c.IsSet("scw.config") {
-				if err := readConfig(c.String("scw.config"), cfg); err != nil {
+			if cmd.IsSet("scw.config") {
+				if err := readConfig(cmd.String("scw.config"), cfg); err != nil {
 					logger.Error("Failed to read config",
 						"err", err,
 					)
@@ -38,13 +39,13 @@ func Server(cfg *config.Config) *cli.Command {
 				return errors.New("missing path for output.file")
 			}
 
-			if c.IsSet("scw.access_key") && c.IsSet("scw.secret_key") {
+			if cmd.IsSet("scw.access_key") && cmd.IsSet("scw.secret_key") {
 				credentials := config.Credential{
 					Project:   "default",
-					AccessKey: c.String("scw.access_key"),
-					SecretKey: c.String("scw.secret_key"),
-					Org:       c.String("scw.org"),
-					Zone:      c.String("scw.zone"),
+					AccessKey: cmd.String("scw.access_key"),
+					SecretKey: cmd.String("scw.secret_key"),
+					Org:       cmd.String("scw.org"),
+					Zone:      cmd.String("scw.zone"),
 				}
 
 				cfg.Target.Credentials = append(
@@ -80,100 +81,100 @@ func ServerFlags(cfg *config.Config) []cli.Flag {
 			Name:        "web.address",
 			Value:       "0.0.0.0:9000",
 			Usage:       "Address to bind the metrics server",
-			EnvVars:     []string{"PROMETHEUS_SCW_WEB_ADDRESS"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_WEB_ADDRESS"),
 			Destination: &cfg.Server.Addr,
 		},
 		&cli.StringFlag{
 			Name:        "web.path",
 			Value:       "/metrics",
 			Usage:       "Path to bind the metrics server",
-			EnvVars:     []string{"PROMETHEUS_SCW_WEB_PATH"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_WEB_PATH"),
 			Destination: &cfg.Server.Path,
 		},
 		&cli.StringFlag{
 			Name:        "web.config",
 			Value:       "",
 			Usage:       "Path to web-config file",
-			EnvVars:     []string{"PROMETHEUS_SCW_WEB_CONFIG"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_WEB_CONFIG"),
 			Destination: &cfg.Server.Web,
 		},
 		&cli.StringFlag{
 			Name:        "output.engine",
 			Value:       "file",
 			Usage:       "Enabled engine like file or http",
-			EnvVars:     []string{"PROMETHEUS_SCW_OUTPUT_ENGINE"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_OUTPUT_ENGINE"),
 			Destination: &cfg.Target.Engine,
 		},
 		&cli.StringFlag{
 			Name:        "output.file",
 			Value:       "/etc/prometheus/scw.json",
 			Usage:       "Path to write the file_sd config",
-			EnvVars:     []string{"PROMETHEUS_SCW_OUTPUT_FILE"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_OUTPUT_FILE"),
 			Destination: &cfg.Target.File,
 		},
 		&cli.IntFlag{
 			Name:        "output.refresh",
 			Value:       30,
 			Usage:       "Discovery refresh interval in seconds",
-			EnvVars:     []string{"PROMETHEUS_SCW_OUTPUT_REFRESH"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_OUTPUT_REFRESH"),
 			Destination: &cfg.Target.Refresh,
 		},
 		&cli.BoolFlag{
 			Name:        "scw.check_instance",
 			Value:       true,
 			Usage:       "Enable instance gathering",
-			EnvVars:     []string{"PROMETHEUS_SCW_CHECK_INSTANCE"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_CHECK_INSTANCE"),
 			Destination: &cfg.Target.CheckInstance,
 		},
 		&cli.BoolFlag{
 			Name:        "scw.check_baremetal",
 			Value:       true,
 			Usage:       "Enable baremetal gathering",
-			EnvVars:     []string{"PROMETHEUS_SCW_CHECK_BAREMETAL"},
+			Sources:     cli.EnvVars("PROMETHEUS_SCW_CHECK_BAREMETAL"),
 			Destination: &cfg.Target.CheckBaremetal,
 		},
 		&cli.StringFlag{
 			Name:    "scw.access_key",
 			Value:   "",
 			Usage:   "Access key for the Scaleway API",
-			EnvVars: []string{"PROMETHEUS_SCW_ACCESS_KEY"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_ACCESS_KEY"),
 		},
 		&cli.StringFlag{
 			Name:    "scw.secret_key",
 			Value:   "",
 			Usage:   "Secret key for the Scaleway API",
-			EnvVars: []string{"PROMETHEUS_SCW_SECRET_KEY"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_SECRET_KEY"),
 		},
 		&cli.StringFlag{
 			Name:    "scw.org",
 			Value:   "",
 			Usage:   "Organization for the Scaleway API",
-			EnvVars: []string{"PROMETHEUS_SCW_ORG"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_ORG"),
 		},
 		&cli.StringFlag{
 			Name:    "scw.zone",
 			Value:   "",
 			Usage:   "Zone for the Scaleway API",
-			EnvVars: []string{"PROMETHEUS_SCW_ZONE"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_ZONE"),
 		},
 		&cli.StringFlag{
 			Name:    "scw.config",
 			Value:   "",
 			Usage:   "Path to Scaleway configuration file",
-			EnvVars: []string{"PROMETHEUS_SCW_CONFIG"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_CONFIG"),
 		},
 		&cli.StringSliceFlag{
 			Name:    "scw.instance_zone",
-			Value:   cli.NewStringSlice("fr-par-1", "nl-ams-1"),
+			Value:   []string{"fr-par-1", "nl-ams-1"},
 			Usage:   "List of available zones for instance API",
-			EnvVars: []string{"PROMETHEUS_SCW_INSTANCE_ZONES"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_INSTANCE_ZONES"),
 			Hidden:  true,
 		},
 		&cli.StringSliceFlag{
 			Name:    "scw.baremetal_zone",
-			Value:   cli.NewStringSlice("fr-par-2"),
+			Value:   []string{"fr-par-2"},
 			Usage:   "List of available zones for baremetal API",
-			EnvVars: []string{"PROMETHEUS_SCW_BAREMETAL_ZONES"},
+			Sources: cli.EnvVars("PROMETHEUS_SCW_BAREMETAL_ZONES"),
 			Hidden:  true,
 		},
 	}
