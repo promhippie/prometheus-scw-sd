@@ -40,7 +40,6 @@ var (
 		"installOs":                providerPrefix + "install_os",
 		"installStatus":            providerPrefix + "install_status",
 		"ips":                      providerPrefix + "ips",
-		"ipv6":                     providerPrefix + "ipv6",
 		"kind":                     providerPrefix + "kind",
 		"name":                     providerPrefix + "name",
 		"node":                     providerPrefix + "node",
@@ -50,11 +49,9 @@ var (
 		"placementGroupName":       providerPrefix + "placement_group_name",
 		"platform":                 providerPrefix + "platform",
 		"privateHost":              providerPrefix + "private_host",
-		"privateIP":                providerPrefix + "private_ipv4",
 		"project":                  providerPrefix + "project",
 		"protected":                providerPrefix + "protected",
 		"publicHost":               providerPrefix + "public_host",
-		"publicIP":                 providerPrefix + "public_ipv4",
 		"securityGroupIdentifier":  providerPrefix + "security_group_id",
 		"securityGroupName":        providerPrefix + "security_group_name",
 		"state":                    providerPrefix + "state",
@@ -187,15 +184,9 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 
 					addresses := make([]model.LabelSet, 0)
 
-					addresses = append(addresses, model.LabelSet{
-						model.AddressLabel: model.LabelValue(server.PublicIP.Address.String()),
-					})
-
-					if server.EnableIPv6 && server.IPv6 != nil {
-						ipv6Address = server.IPv6.Address.String()
-
+					for _, ip := range server.PublicIPs {
 						addresses = append(addresses, model.LabelSet{
-							model.AddressLabel: model.LabelValue(ipv6Address),
+							model.AddressLabel: model.LabelValue(ip.Address.String()),
 						})
 					}
 
@@ -203,7 +194,7 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 						Source:  fmt.Sprintf("instance/%s", server.ID),
 						Targets: addresses,
 						Labels: model.LabelSet{
-							model.AddressLabel:                                  model.LabelValue(server.PublicIP.Address.String()),
+							model.AddressLabel:                                  model.LabelValue(server.PublicIPs[0].Address.String()),
 							model.LabelName(Labels["project"]):                  model.LabelValue(project),
 							model.LabelName(Labels["identifier"]):               model.LabelValue(server.ID),
 							model.LabelName(Labels["name"]):                     model.LabelValue(server.Name),
@@ -212,14 +203,11 @@ func (d *Discoverer) getTargets(ctx context.Context) ([]*targetgroup.Group, erro
 							model.LabelName(Labels["tags"]):                     model.LabelValue(tagsToString(d.separator, server.Tags)),
 							model.LabelName(Labels["commercialType"]):           model.LabelValue(server.CommercialType),
 							model.LabelName(Labels["dynamicIPRequired"]):        model.LabelValue(boolToString(server.DynamicIPRequired)),
-							model.LabelName(Labels["enableIPv6"]):               model.LabelValue(boolToString(server.EnableIPv6)),
 							model.LabelName(Labels["hostname"]):                 model.LabelValue(server.Hostname),
 							model.LabelName(Labels["imageIdentifier"]):          model.LabelValue(imageIdentifier),
 							model.LabelName(Labels["imageName"]):                model.LabelValue(imageName),
 							model.LabelName(Labels["protected"]):                model.LabelValue(boolToString(server.Protected)),
-							model.LabelName(Labels["privateIP"]):                model.LabelValue(*server.PrivateIP),
 							model.LabelName(Labels["privateHost"]):              model.LabelValue(fmt.Sprintf("%s.priv.cloud.scaleway.com", server.ID)),
-							model.LabelName(Labels["publicIP"]):                 model.LabelValue(server.PublicIP.Address.String()),
 							model.LabelName(Labels["publicHost"]):               model.LabelValue(fmt.Sprintf("%s.pub.cloud.scaleway.com", server.ID)),
 							model.LabelName(Labels["state"]):                    model.LabelValue(server.State),
 							model.LabelName(Labels["cluster"]):                  model.LabelValue(locationCluster),
