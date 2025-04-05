@@ -19,7 +19,6 @@
 * `__meta_scaleway_install_os`
 * `__meta_scaleway_install_status`
 * `__meta_scaleway_ips`
-* `__meta_scaleway_ipv6`
 * `__meta_scaleway_kind`
 * `__meta_scaleway_name`
 * `__meta_scaleway_node`
@@ -29,11 +28,9 @@
 * `__meta_scaleway_placement_group_name`
 * `__meta_scaleway_platform`
 * `__meta_scaleway_private_host`
-* `__meta_scaleway_private_ipv4`
 * `__meta_scaleway_project`
 * `__meta_scaleway_protected`
 * `__meta_scaleway_public_host`
-* `__meta_scaleway_public_ipv4`
 * `__meta_scaleway_security_group_id`
 * `__meta_scaleway_security_group_name`
 * `__meta_scaleway_state`
