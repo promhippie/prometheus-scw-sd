@@ -1,23 +1,7 @@
-# Changelog for unreleased
-
-The following sections list the changes for unreleased.
-
-## Summary
-
- * Chg #278: Switch to official logging library
-
-## Details
-
- * Change #278: Switch to official logging library
-
-   Since there have been a structured logger part of the Go standard library we
-   thought it's time to replace the library with that. Be aware that log messages
-   should change a little bit.
-
-   https://github.com/promhippie/prometheus-scw-sd/issues/278
+# Changelog
 
 
-# Changelog for 1.3.0
+## 1.3.0
 
 The following sections list the changes for 1.3.0.
 
@@ -44,7 +28,7 @@ The following sections list the changes for 1.3.0.
    https://github.com/promhippie/prometheus-scw-sd/issues/212
 
 
-# Changelog for 1.2.0
+## 1.2.0
 
 The following sections list the changes for 1.2.0.
 
@@ -73,7 +57,7 @@ The following sections list the changes for 1.2.0.
    https://github.com/promhippie/prometheus-scw-sd/pull/118
 
 
-# Changelog for 1.1.0
+## 1.1.0
 
 The following sections list the changes for 1.1.0.
 
@@ -138,7 +122,7 @@ The following sections list the changes for 1.1.0.
    https://github.com/promhippie/prometheus-scw-sd/issues/31
 
 
-# Changelog for 1.0.1
+## 1.0.1
 
 The following sections list the changes for 1.0.1.
 
@@ -158,7 +142,7 @@ The following sections list the changes for 1.0.1.
    https://github.com/promhippie/prometheus-scw-sd/issues/12
 
 
-# Changelog for 1.0.0
+## 1.0.0
 
 The following sections list the changes for 1.0.0.
 
@@ -187,7 +171,7 @@ The following sections list the changes for 1.0.0.
    https://github.com/promhippie/prometheus-scw-sd/pull/11
 
 
-# Changelog for 0.3.0
+## 0.3.0
 
 The following sections list the changes for 0.3.0.
 
@@ -240,7 +224,7 @@ The following sections list the changes for 0.3.0.
    https://github.com/promhippie/prometheus-scw-sd/pull/9
 
 
-# Changelog for 0.2.0
+## 0.2.0
 
 The following sections list the changes for 0.2.0.
 
@@ -298,7 +282,7 @@ The following sections list the changes for 0.2.0.
    https://github.com/promhippie/prometheus-scw-sd/pull/3
 
 
-# Changelog for 0.1.0
+## 0.1.0
 
 The following sections list the changes for 0.1.0.
 
