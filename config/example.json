@@ -12,7 +12,8 @@
         "engine": "file",
         "file": "/etc/prometheus/scw.json",
         "refresh": 30,
-        "credentials": [{
+        "credentials": [
+            {
                 "project": "example1",
                 "access_key": "",
                 "secret_key": ""

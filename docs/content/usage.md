@@ -68,6 +68,7 @@ services:
     restart: always
     environment:
       - PROMETHEUS_SCW_LOG_PRETTY=true
+      - PROMETHEUS_SCW_OUTPUT_ENGINE=file
       - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
       - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
       - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
@@ -87,10 +88,11 @@ like this to the `docker-compose.yml` file:
 {{< highlight diff >}}
   scw-sd:
 -   image: promhippie/prometheus-scw-sd:latest
-+   image: promhippie/prometheus-scw-sd:1.1.0
++   image: promhippie/prometheus-scw-sd:x.x.x
     restart: always
     environment:
       - PROMETHEUS_SCW_LOG_PRETTY=true
+      - PROMETHEUS_SCW_OUTPUT_ENGINE=file
       - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
       - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
       - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
@@ -112,6 +114,7 @@ be able to read the generated JSON file:
 +   user: '65534'
     environment:
       - PROMETHEUS_SCW_LOG_PRETTY=true
+      - PROMETHEUS_SCW_OUTPUT_ENGINE=file
       - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
       - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
       - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
@@ -133,6 +136,7 @@ config format look at the [documentation](#web-configuration) section:
     environment:
 +     - PROMETHEUS_SCW_WEB_CONFIG=path/to/web-config.json
       - PROMETHEUS_SCW_LOG_PRETTY=true
+      - PROMETHEUS_SCW_OUTPUT_ENGINE=file
       - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
       - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
       - PROMETHEUS_SCW_SECRET_KEY=a6566958-0311-4c72-bac0-2cc86a852a19
@@ -154,6 +158,7 @@ service discovery:
     restart: always
     environment:
       - PROMETHEUS_SCW_LOG_PRETTY=true
+-     - PROMETHEUS_SCW_OUTPUT_ENGINE=file
 +     - PROMETHEUS_SCW_OUTPUT_ENGINE=http
       - PROMETHEUS_SCW_OUTPUT_FILE=/etc/sd/scw.json
       - PROMETHEUS_SCW_ACCESS_KEY=SCWTAGNAXNNTV4NBNPVN
