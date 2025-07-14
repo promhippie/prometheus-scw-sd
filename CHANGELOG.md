@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.1.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.0.0...v2.1.0) (2025-07-14)
+
+
+### Features
+
+* **deps:** update module github.com/mgechev/revive to v1.11.0 ([f297652](https://github.com/promhippie/prometheus-scw-sd/commit/f297652481ab5d8c7cd50c63446978758dfd7c87))
+
+
+### Bugfixes
+
+* **deps:** update golang docker tag to v1.24.5 ([e223033](https://github.com/promhippie/prometheus-scw-sd/commit/e223033b299caadd005ee477cf8b2f24efdd53a4))
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.2.2 ([1769472](https://github.com/promhippie/prometheus-scw-sd/commit/17694723db8d8988bb6f2fc63dd831bd3da831c6))
+* **deps:** update module github.com/scaleway/scaleway-sdk-go to v1.0.0-beta.34 ([7b5cd37](https://github.com/promhippie/prometheus-scw-sd/commit/7b5cd37fe4df6d6565a6bc33e8e6a6598a20b59a))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9e99f35](https://github.com/promhippie/prometheus-scw-sd/commit/9e99f35e1cccaa630cd2808aaa77a5d5080459d6))
+* **flake:** updated lockfile [skip ci] ([827f110](https://github.com/promhippie/prometheus-scw-sd/commit/827f110f502219b439cac301ead17b30e185f55c))
+
 ## [2.0.0](https://github.com/promhippie/prometheus-scw-sd/compare/v1.3.0...v2.0.0) (2025-07-02)
 
 
