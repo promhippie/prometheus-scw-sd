@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.1.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.1.0...v2.1.1) (2025-07-21)
+
+
+### Bugfixes
+
+* use correct name for systemd service ([52aa347](https://github.com/promhippie/prometheus-scw-sd/commit/52aa34780ac57c292f2f703ac7d1982b7d33f4ec))
+
+
+### Miscellaneous
+
+* **deps:** update docker digests ([c179426](https://github.com/promhippie/prometheus-scw-sd/commit/c179426cc942fd299e00fbfe361e6c6a5fd17ac9))
+* **deps:** update golang:1.24.5-alpine3.21 docker digest to 6edc205 ([c586873](https://github.com/promhippie/prometheus-scw-sd/commit/c5868731073aba67d817d071ba7950be562a5e6f))
+* **deps:** update golang:1.24.5-alpine3.21 docker digest to 72ff633 ([59e8c92](https://github.com/promhippie/prometheus-scw-sd/commit/59e8c925c1e4db5d63863e3e9d696f14c5a7a000))
+* **flake:** updated lockfile [skip ci] ([63e6290](https://github.com/promhippie/prometheus-scw-sd/commit/63e62905d44f02729a8dd6c53b2991abf90e735e))
+
 ## [2.1.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.0.0...v2.1.0) (2025-07-14)
 
 
