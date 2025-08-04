@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.0...v2.2.1) (2025-08-04)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.3.1 ([60447c5](https://github.com/promhippie/prometheus-scw-sd/commit/60447c5bb6b544892091456325449ad1d783f136))
+* **deps:** update module github.com/prometheus/client_golang to v1.23.0 ([bfbf031](https://github.com/promhippie/prometheus-scw-sd/commit/bfbf0317ae935bed02ca0b414814b972ca34f58d))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([01f7ad0](https://github.com/promhippie/prometheus-scw-sd/commit/01f7ad07b1506ca9cb4ca1ec2340d6c38f22602c))
+
 ## [2.2.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.1.1...v2.2.0) (2025-07-28)
 
 
