@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.2.3](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.2...v2.2.3) (2025-08-18)
+
+
+### Bugfixes
+
+* correctly hand over goos/goarch to build task ([3af05bc](https://github.com/promhippie/prometheus-scw-sd/commit/3af05bcb08e4b42a1348ed30f9d0386566d7df87))
+* **deps:** update golang docker tag to v1.25.0 ([3ea40ff](https://github.com/promhippie/prometheus-scw-sd/commit/3ea40ff8e400bac655f2564855236d02214adbb6))
+* **deps:** update golang:1.25.0-alpine3.21 docker digest to a92c1ab ([1cc264b](https://github.com/promhippie/prometheus-scw-sd/commit/1cc264b15b229c7fdc543dd42bc69fe3f206bd82))
+* **deps:** update golang:1.25.0-alpine3.21 docker digest to c8e1680 ([86948b5](https://github.com/promhippie/prometheus-scw-sd/commit/86948b54beaa0c1ce40039d0613ba80e53995b66))
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.4.0 ([d4f9f3e](https://github.com/promhippie/prometheus-scw-sd/commit/d4f9f3ea7ad1b2a06126ed1779699185d48c3f03))
+* **deps:** update module github.com/urfave/cli/v3 to v3.3.9 ([d917c5b](https://github.com/promhippie/prometheus-scw-sd/commit/d917c5b92d947fe41f9bc3090b40c4ff59acd860))
+* **deps:** update module github.com/urfave/cli/v3 to v3.4.0 ([872409f](https://github.com/promhippie/prometheus-scw-sd/commit/872409fa9c54d038addcd35049a2902b6722fa1f))
+* **deps:** update module github.com/urfave/cli/v3 to v3.4.1 ([2d88ef1](https://github.com/promhippie/prometheus-scw-sd/commit/2d88ef1b703428b7a6c1097e6b9b3c0f9992fbcb))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([8fb7d22](https://github.com/promhippie/prometheus-scw-sd/commit/8fb7d22fb47035c39848149a1bdb267c540b6030))
+
 ## [2.2.2](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.1...v2.2.2) (2025-08-11)
 
 
