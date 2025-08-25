@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.4](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.3...v2.2.4) (2025-08-25)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/stretchr/testify to v1.11.0 ([7139666](https://github.com/promhippie/prometheus-scw-sd/commit/71396667d027882d720ee5cff3371754843ab8e2))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([62eea2d](https://github.com/promhippie/prometheus-scw-sd/commit/62eea2dd8d5f5c6a65afa70e1022a89b40a0b419))
+
 ## [2.2.3](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.2...v2.2.3) (2025-08-18)
 
 
