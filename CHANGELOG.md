@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.5](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.4...v2.2.5) (2025-09-01)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/go-chi/chi/v5 to v5.2.3 ([772c07b](https://github.com/promhippie/prometheus-scw-sd/commit/772c07b4b38812fca011fb67c5680755a29014fc))
+* **deps:** update module github.com/mgechev/revive to v1.12.0 ([67f177e](https://github.com/promhippie/prometheus-scw-sd/commit/67f177ec287f1b66625383caac60ae939aea6481))
+* **deps:** update module github.com/stretchr/testify to v1.11.1 ([bd13a30](https://github.com/promhippie/prometheus-scw-sd/commit/bd13a30d310d9890ddc935dac325bf70f86da298))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([7df39f5](https://github.com/promhippie/prometheus-scw-sd/commit/7df39f5e3c953f3b4e86ed124e8f2d8040a773ec))
+
 ## [2.2.4](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.3...v2.2.4) (2025-08-25)
 
 
