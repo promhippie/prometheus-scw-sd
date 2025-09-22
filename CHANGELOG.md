@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.2.7](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.6...v2.2.7) (2025-09-22)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.5.0 ([69710fc](https://github.com/promhippie/prometheus-scw-sd/commit/69710fc1c2624b8ab447c2586fe1daef39abdc14))
+* **deps:** update module github.com/scaleway/scaleway-sdk-go to v1.0.0-beta.35 ([de1f78f](https://github.com/promhippie/prometheus-scw-sd/commit/de1f78ff8a225f885e382585c0db6d2b6315f843))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([35c388f](https://github.com/promhippie/prometheus-scw-sd/commit/35c388f151920ca70b2dbb2d65d0f5963ccd5cc4))
+* **flake:** updated lockfile [skip ci] ([1bce0e5](https://github.com/promhippie/prometheus-scw-sd/commit/1bce0e510fe2c2180efc4b44c51729d15a140c85))
+* move from baltorepo to cloudsmith ([d83e06b](https://github.com/promhippie/prometheus-scw-sd/commit/d83e06b770409198fbf0856dca55bc3d3806092a))
+
 ## [2.2.6](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.5...v2.2.6) (2025-09-08)
 
 
