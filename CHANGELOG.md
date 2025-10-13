@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.2.8](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.7...v2.2.8) (2025-10-13)
+
+
+### Bugfixes
+
+* **deps:** update alpine:3.22 docker digest to 4b7ce07 ([acf4690](https://github.com/promhippie/prometheus-scw-sd/commit/acf469002e672a7b3b7a809b146349dd0a56a692))
+* **deps:** update golang docker tag to v1.25.2 ([b7b9caa](https://github.com/promhippie/prometheus-scw-sd/commit/b7b9caaa9adca43d6eb435df6971a0e5695f0143))
+* **deps:** update golang:1.25.2-alpine3.21 docker digest to 0134653 ([2d0fda2](https://github.com/promhippie/prometheus-scw-sd/commit/2d0fda27b9f4f51805b2fbdef54dee168e68736a))
+* **deps:** update golang:1.25.2-alpine3.21 docker digest to 0ae17b3 ([7aa6417](https://github.com/promhippie/prometheus-scw-sd/commit/7aa6417bd17bcc41952b1db525c733abc0586c73))
+* **deps:** update golang:1.25.2-alpine3.21 docker digest to 7300a8d ([e376673](https://github.com/promhippie/prometheus-scw-sd/commit/e3766735c66f3a483dca5ee17ca8e4f73df0b5c6))
+* **deps:** update module github.com/prometheus/common to v0.67.1 ([2b6c144](https://github.com/promhippie/prometheus-scw-sd/commit/2b6c14439e48987df95b65b9fb3df850171334ee))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9d125b1](https://github.com/promhippie/prometheus-scw-sd/commit/9d125b11aceef3f927d48a93e42d2f8d45a364d4))
+* **flake:** updated lockfile [skip ci] ([ada71ef](https://github.com/promhippie/prometheus-scw-sd/commit/ada71ef554a7bce080ca33e77d9717957288991a))
+* **flake:** updated lockfile [skip ci] ([97c3add](https://github.com/promhippie/prometheus-scw-sd/commit/97c3add6e8943494357f6d3db539b46f52295f60))
+
 ## [2.2.7](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.6...v2.2.7) (2025-09-22)
 
 
