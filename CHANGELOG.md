@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.9](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.8...v2.2.9) (2025-10-20)
+
+
+### Bugfixes
+
+* **deps:** update golang docker tag to v1.25.3 ([48388ac](https://github.com/promhippie/prometheus-scw-sd/commit/48388ac6c95a8aa340070a767e217d6a8f7d731c))
+* **deps:** update golang:1.25.3-alpine3.21 docker digest to 0c9f3e0 ([25bbcdd](https://github.com/promhippie/prometheus-scw-sd/commit/25bbcddeea3c1a1a105d4f6163393e23dc20ccc5))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([a9e3611](https://github.com/promhippie/prometheus-scw-sd/commit/a9e3611d8443503501e070f44fa49635dd3bf2d2))
+
 ## [2.2.8](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.7...v2.2.8) (2025-10-13)
 
 
