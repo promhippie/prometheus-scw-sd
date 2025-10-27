@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.10](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.9...v2.2.10) (2025-10-27)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/prometheus/exporter-toolkit to v0.15.0 ([7d17212](https://github.com/promhippie/prometheus-scw-sd/commit/7d172129fed83cf1c99ccec6ed4ef4037de9e108))
+* **deps:** update module github.com/urfave/cli/v3 to v3.5.0 ([f7e083d](https://github.com/promhippie/prometheus-scw-sd/commit/f7e083d673042803ee4fd61384640bba59a27b50))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([7817143](https://github.com/promhippie/prometheus-scw-sd/commit/781714333d21ce2c510a4db1c15c738c65ff0286))
+
 ## [2.2.9](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.8...v2.2.9) (2025-10-20)
 
 
