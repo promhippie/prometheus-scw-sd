@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.2.12](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.11...v2.2.12) (2025-11-10)
+
+
+### Bugfixes
+
+* **deps:** update golang docker tag to v1.25.4 ([0e71ac5](https://github.com/promhippie/prometheus-scw-sd/commit/0e71ac5817eb4b288c3cfff2f6141122a06936ab))
+* **deps:** update golang:1.25.4-alpine3.21 docker digest to 3289aac ([2e62d05](https://github.com/promhippie/prometheus-scw-sd/commit/2e62d05c4f1da596f91a131635641217eae07451))
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.6.1 ([bfdbff4](https://github.com/promhippie/prometheus-scw-sd/commit/bfdbff473327681aa87c2f54cbbab409b7df551e))
+* **deps:** update module github.com/urfave/cli/v3 to v3.6.0 ([75be9a7](https://github.com/promhippie/prometheus-scw-sd/commit/75be9a773866eb8c939c22d18d9566fad21c7e84))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([1b38ae3](https://github.com/promhippie/prometheus-scw-sd/commit/1b38ae3096ca8998b778c83d37dd9d5fef07510a))
+
 ## [2.2.11](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.10...v2.2.11) (2025-11-03)
 
 
