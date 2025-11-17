@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.13](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.12...v2.2.13) (2025-11-17)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.6.2 ([cd392a7](https://github.com/promhippie/prometheus-scw-sd/commit/cd392a7d52f4b65f76844f3014ba1c0c9b9e6700))
+* **deps:** update module github.com/urfave/cli/v3 to v3.6.1 ([6a20784](https://github.com/promhippie/prometheus-scw-sd/commit/6a20784628b392a1166411882b09c47afbe5973a))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([c3ad8a8](https://github.com/promhippie/prometheus-scw-sd/commit/c3ad8a8b8929c56dce0a4099311c35b4d7780dd2))
+
 ## [2.2.12](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.11...v2.2.12) (2025-11-10)
 
 
