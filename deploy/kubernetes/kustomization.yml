@@ -22,6 +22,6 @@ secretGenerator:
 images:
   - name: prometheus-scw-sd
     newName: quay.io/promhippie/prometheus-scw-sd
-    newTag: latest@sha256:76150e1198edd2435a8a421fba813d13a282f09cd34e17cab5e096f6ffc57c1a
+    newTag: latest@sha256:1a14386d172cb984e5f6c3fcb151d0944bbfb057ded701a134626dc3f7c9deb3
 
 ...
