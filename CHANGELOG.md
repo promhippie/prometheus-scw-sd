@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.2.14](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.13...v2.2.14) (2025-11-24)
+
+
+### Bugfixes
+
+* **deps:** pin quay.io/promhippie/prometheus-scw-sd docker tag to 5791d0e ([b0a0af1](https://github.com/promhippie/prometheus-scw-sd/commit/b0a0af146fe86e58a396ec71c4986534808ef9a1))
+* **deps:** update module github.com/prometheus/common to v0.67.3 ([543dfbe](https://github.com/promhippie/prometheus-scw-sd/commit/543dfbeadd9b245679cc62b5d462ecfa72195810))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 1a14386 ([3bcfe26](https://github.com/promhippie/prometheus-scw-sd/commit/3bcfe26de9e2066a7a61db62e886397ca5e15372))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 586ed08 ([cd9b163](https://github.com/promhippie/prometheus-scw-sd/commit/cd9b1635f01216dcfaac5371bd7a6f53f03ec7ac))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 76150e1 ([0057105](https://github.com/promhippie/prometheus-scw-sd/commit/0057105eaedd519615482d6c2965f64bcb66a955))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 871d721 ([5d6c18c](https://github.com/promhippie/prometheus-scw-sd/commit/5d6c18cbfac33bca47c90182bbc4c8e871624712))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 8a08e92 ([6b4ec96](https://github.com/promhippie/prometheus-scw-sd/commit/6b4ec96a8c23cd6f42362c880de6a13dcbbbcc20))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 8a97102 ([1742487](https://github.com/promhippie/prometheus-scw-sd/commit/17424874341a211a03f9e85cc5a8f2f4c10d3d26))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 97f2a4e ([a304c89](https://github.com/promhippie/prometheus-scw-sd/commit/a304c89e1de1d1ec1200885dd39ed6ff19d45a96))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to a6e8eb8 ([56cebc2](https://github.com/promhippie/prometheus-scw-sd/commit/56cebc26babb77dd918773733f9d3611a10fb65b))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to a810f7f ([948f1e4](https://github.com/promhippie/prometheus-scw-sd/commit/948f1e4a20773202812dc345f346a9ea5b2c4802))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to aadea4c ([5078185](https://github.com/promhippie/prometheus-scw-sd/commit/507818550afe50baf8539477fcaec91d875bdfd0))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to bb9888d ([76b3709](https://github.com/promhippie/prometheus-scw-sd/commit/76b3709f5d8633b6d894218881b5372e8b82000d))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to d639261 ([9eb0396](https://github.com/promhippie/prometheus-scw-sd/commit/9eb0396db4bd5b179b8561ff7792e3b16c8cdb7b))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to d8951a3 ([2ea3994](https://github.com/promhippie/prometheus-scw-sd/commit/2ea3994f6ab78e88e043b4e12e7f67e7360b5a42))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to e13032f ([a1ab009](https://github.com/promhippie/prometheus-scw-sd/commit/a1ab00931e40a024b7932eb40de786d3bd347c16))
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to e8bd7ec ([e4858f1](https://github.com/promhippie/prometheus-scw-sd/commit/e4858f13a0f7ba7bbc009ebc688848385bf48396))
+
+
+### Miscellaneous
+
+* **deps:** bump golang.org/x/crypto from 0.44.0 to 0.45.0 ([4397edd](https://github.com/promhippie/prometheus-scw-sd/commit/4397eddaada563df78260b00ec441e16ec23baa3))
+* **flake:** updated lockfile [skip ci] ([1ec87fb](https://github.com/promhippie/prometheus-scw-sd/commit/1ec87fbce99717242432688de6931fb9f92a36e0))
+
 ## [2.2.13](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.12...v2.2.13) (2025-11-17)
 
 
