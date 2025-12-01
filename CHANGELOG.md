@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.2.15](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.14...v2.2.15) (2025-12-01)
+
+
+### Bugfixes
+
+* **deps:** update quay.io/promhippie/prometheus-scw-sd:latest docker digest to 2cc118f ([23045eb](https://github.com/promhippie/prometheus-scw-sd/commit/23045eb677e57e1374175feac7e6cb16834114e2))
+* **patch:** update module github.com/prometheus/common to v0.67.4 ([7a1d517](https://github.com/promhippie/prometheus-scw-sd/commit/7a1d517aa48fc1c3c140877fd623eb0e3a9ce318))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([47dcab1](https://github.com/promhippie/prometheus-scw-sd/commit/47dcab1ee4e3eefa467a52676b183e44cb820bf0))
+
 ## [2.2.14](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.13...v2.2.14) (2025-11-24)
 
 
