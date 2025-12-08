@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.3.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.15...v2.3.0) (2025-12-08)
+
+
+### Features
+
+* **minor:** update alpine docker tag to v3.23 ([#406](https://github.com/promhippie/prometheus-scw-sd/issues/406)) ([c7c4ca4](https://github.com/promhippie/prometheus-scw-sd/commit/c7c4ca4b8ae55a483cfe9eea4b799d13d5e8f646))
+
+
+### Bugfixes
+
+* **patch:** update golang docker tag to v1.25.5 ([#405](https://github.com/promhippie/prometheus-scw-sd/issues/405)) ([a7602f1](https://github.com/promhippie/prometheus-scw-sd/commit/a7602f1c6fa9261314a48808d87a84bbf3c9466e))
+
+
+### Miscellaneous
+
+* drop issue and pull request template ([7705169](https://github.com/promhippie/prometheus-scw-sd/commit/770516917d4d3a343987f7775e66824b61e2b728))
+* **flake:** updated lockfile [skip ci] ([8817df4](https://github.com/promhippie/prometheus-scw-sd/commit/8817df40ce083bb847936b72b94f9b7a92494f00))
+* just format some yaml comment ([a4b942d](https://github.com/promhippie/prometheus-scw-sd/commit/a4b942de64519d751d2ebe2f37e720aff0afb9b6))
+
 ## [2.2.15](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.14...v2.2.15) (2025-12-01)
 
 
