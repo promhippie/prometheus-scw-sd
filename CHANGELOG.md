@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.3.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.0...v2.3.1) (2025-12-22)
+
+
+### Bugfixes
+
+* **deps:** update alpine:3.23 docker digest to 865b95f ([#415](https://github.com/promhippie/prometheus-scw-sd/issues/415)) ([37ab443](https://github.com/promhippie/prometheus-scw-sd/commit/37ab443fc7e48c8bfdbb1c1c2817a53547547789))
+* **deps:** update alpine:3.23 docker digest to be171b5 ([#414](https://github.com/promhippie/prometheus-scw-sd/issues/414)) ([cc7614c](https://github.com/promhippie/prometheus-scw-sd/commit/cc7614c6959443480e5de9830bf1c95909625886))
+* **patch:** update module github.com/scaleway/scaleway-sdk-go to v1.0.0-beta.36 ([#416](https://github.com/promhippie/prometheus-scw-sd/issues/416)) ([4ead323](https://github.com/promhippie/prometheus-scw-sd/commit/4ead323fadd7a4f8f12281e26253d968153bd8e3))
+
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([7b063d5](https://github.com/promhippie/prometheus-scw-sd/commit/7b063d5c0e1feff917cf30ecf1ce729b098db975))
+* **flake:** updated lockfile [skip ci] ([edc9f28](https://github.com/promhippie/prometheus-scw-sd/commit/edc9f28d388379a109d79207717f28dd6c4fb690))
+
 ## [2.3.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.2.15...v2.3.0) (2025-12-08)
 
 
