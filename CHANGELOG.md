@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.2](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.1...v2.3.2) (2026-01-12)
+
+### Bugfixes
+
+* **patch:** update module github.com/prometheus/common to v0.67.5 ([#422](https://github.com/promhippie/prometheus-scw-sd/issues/422)) ([1c191dd](https://github.com/promhippie/prometheus-scw-sd/commit/1c191ddb76511836f8f23726fa696bdbe367fa84))
+* **patch:** update module github.com/prometheus/exporter-toolkit to v0.15.1 ([#421](https://github.com/promhippie/prometheus-scw-sd/issues/421)) ([a18cb7a](https://github.com/promhippie/prometheus-scw-sd/commit/a18cb7a0a1ee260a558f7827ba6adaee398dc540))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([e8e071f](https://github.com/promhippie/prometheus-scw-sd/commit/e8e071fe4d0f77380d9a8d4def6f411c71c805b3))
+* **flake:** updated lockfile [skip ci] ([d8d5de1](https://github.com/promhippie/prometheus-scw-sd/commit/d8d5de1b6009618f40ca6d80b5cbb35f512d58cb))
+* **flake:** updated lockfile [skip ci] ([f2f0dc1](https://github.com/promhippie/prometheus-scw-sd/commit/f2f0dc1eaab259525dd99156a02236157ea7e2ca))
+
 ## [2.3.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.0...v2.3.1) (2025-12-22)
 
 
