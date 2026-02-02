@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.3.4](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.3...v2.3.4) (2026-02-02)
+
+### Bugfixes
+
+* **deps:** update alpine:3.23 docker digest to 2510918 ([#429](https://github.com/promhippie/prometheus-scw-sd/issues/429)) ([8c7eb92](https://github.com/promhippie/prometheus-scw-sd/commit/8c7eb9202afefeed2f65a38f71f073e5a4942e8d))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([27a8e86](https://github.com/promhippie/prometheus-scw-sd/commit/27a8e861897df74575d42747ee3a9b77d4dcdcd7))
+* **flake:** updated lockfile [skip ci] ([283567e](https://github.com/promhippie/prometheus-scw-sd/commit/283567e9478fea39e2fcf78c8879d5576803615f))
+
 ## [2.3.3](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.2...v2.3.3) (2026-01-19)
 
 ### Bugfixes
