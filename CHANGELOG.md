@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.3.5](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.4...v2.3.5) (2026-02-09)
+
+### Bugfixes
+
+* **patch:** update module github.com/go-chi/chi/v5 to v5.2.5 ([#431](https://github.com/promhippie/prometheus-scw-sd/issues/431)) ([534e8db](https://github.com/promhippie/prometheus-scw-sd/commit/534e8dbe058454e46750289e606e8a2e5634754c))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([02f0fa9](https://github.com/promhippie/prometheus-scw-sd/commit/02f0fa95d28d6258b815b218c1ae7b5206f7c9f0))
+
 ## [2.3.4](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.3...v2.3.4) (2026-02-02)
 
 ### Bugfixes
