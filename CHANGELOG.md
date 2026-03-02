@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.4.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.5...v2.4.0) (2026-03-02)
+
+### Features
+
+* **minor:** update module github.com/urfave/cli/v3 to v3.7.0 ([#433](https://github.com/promhippie/prometheus-scw-sd/issues/433)) ([1ac6968](https://github.com/promhippie/prometheus-scw-sd/commit/1ac69688387970f94042572b9fab9d1d1c65f381))
+
+### Miscellaneous
+
+* enable skip-package-name-collision-with-go-std for revive ([76ebbb4](https://github.com/promhippie/prometheus-scw-sd/commit/76ebbb4393e23268402912b3b8cc2d52ae0becd8))
+* **flake:** updated lockfile [skip ci] ([1093d29](https://github.com/promhippie/prometheus-scw-sd/commit/1093d29542ba6e5e699cdcdb97a3eb0f811b16ec))
+* **flake:** updated lockfile [skip ci] ([b7c6248](https://github.com/promhippie/prometheus-scw-sd/commit/b7c6248a0ab0c229e97abffba3fad06fa75acc56))
+* **flake:** updated lockfile [skip ci] ([885d040](https://github.com/promhippie/prometheus-scw-sd/commit/885d0407cce65199311161bd6cfe395e0ef8c929))
+* replace nixfmt package ([cca2b85](https://github.com/promhippie/prometheus-scw-sd/commit/cca2b850c6927e2550e025d55f1d83cda4a2ba39))
+
 ## [2.3.5](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.4...v2.3.5) (2026-02-09)
 
 ### Bugfixes
