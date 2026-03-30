@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.5.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.4.0...v2.5.0) (2026-03-30)
+
+### Features
+
+* **minor:** update module github.com/urfave/cli/v3 to v3.8.0 ([#441](https://github.com/promhippie/prometheus-scw-sd/issues/441)) ([53a0fab](https://github.com/promhippie/prometheus-scw-sd/commit/53a0fabe2b878a4fffbdf4034035922aee31e7f7))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([fdebf3c](https://github.com/promhippie/prometheus-scw-sd/commit/fdebf3c40831ccfe108a52b2f96721cb2207bcbf))
+* **flake:** updated lockfile [skip ci] ([a8cfc5a](https://github.com/promhippie/prometheus-scw-sd/commit/a8cfc5a21f52f82c20c67358f20a565d25ead278))
+* **flake:** updated lockfile [skip ci] ([9ad042c](https://github.com/promhippie/prometheus-scw-sd/commit/9ad042c6ef8df19f84d19ed7ca20dd5074969f95))
+* **flake:** updated lockfile [skip ci] ([fc0d040](https://github.com/promhippie/prometheus-scw-sd/commit/fc0d040c231fd8db5d2bf86206b22366a7a78f1a))
+
 ## [2.4.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.3.5...v2.4.0) (2026-03-02)
 
 ### Features
