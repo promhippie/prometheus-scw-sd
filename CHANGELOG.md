@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.8.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.7.0...v2.8.0) (2026-05-25)
+
+### Features
+
+* **minor:** update module github.com/go-chi/chi/v5 to v5.3.0 ([#453](https://github.com/promhippie/prometheus-scw-sd/issues/453)) ([3a76536](https://github.com/promhippie/prometheus-scw-sd/commit/3a765360b25a3002c9b8128b4d0895f6d4808c86))
+* upgrade required go version to 1.26 ([47c94c4](https://github.com/promhippie/prometheus-scw-sd/commit/47c94c4368e93df277b3824a1804c304d3b77485))
+
+### Bugfixes
+
+* **deps:** pin golang docker tag to 91eda97 ([#454](https://github.com/promhippie/prometheus-scw-sd/issues/454)) ([a38a10e](https://github.com/promhippie/prometheus-scw-sd/commit/a38a10e6a802f9c97d210d192fceaacff16caefb))
+* enforce 1.26.3 for docker image ([c6627fe](https://github.com/promhippie/prometheus-scw-sd/commit/c6627fe72d7e9690386f26559dfe13233f6ef16c))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([d632adc](https://github.com/promhippie/prometheus-scw-sd/commit/d632adc7f52918431ca8814017c41a04901992cd))
+* switch flake input to 25.11 release ([7e0537c](https://github.com/promhippie/prometheus-scw-sd/commit/7e0537c0ffdfd58d2a8e10e9aba383cb44356028))
+
 ## [2.7.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.6.1...v2.7.0) (2026-05-18)
 
 ### Features
