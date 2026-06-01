@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.9.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.8.0...v2.9.0) (2026-06-01)
+
+### Features
+
+* **minor:** update module github.com/prometheus/common to v0.68.0 ([#455](https://github.com/promhippie/prometheus-scw-sd/issues/455)) ([59cc8d9](https://github.com/promhippie/prometheus-scw-sd/commit/59cc8d9269c44e38242b3f92a03e0f026bc40358))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([f7d9d45](https://github.com/promhippie/prometheus-scw-sd/commit/f7d9d45263f194504e207aae51805e59f80c8f8c))
+
 ## [2.8.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.7.0...v2.8.0) (2026-05-25)
 
 ### Features
