@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.9.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.9.0...v2.9.1) (2026-06-08)
+
+### Bugfixes
+
+* **deps:** update docker digests ([#457](https://github.com/promhippie/prometheus-scw-sd/issues/457)) ([038048f](https://github.com/promhippie/prometheus-scw-sd/commit/038048f2264adf2452dd798400b9056bd527a3ff))
+* **patch:** update golang docker tag to v1.26.4 ([#456](https://github.com/promhippie/prometheus-scw-sd/issues/456)) ([2e18318](https://github.com/promhippie/prometheus-scw-sd/commit/2e183182d4cd0ecaf202b8092bd1fef411dd1b18))
+* **patch:** update module github.com/prometheus/common to v0.68.1 ([#458](https://github.com/promhippie/prometheus-scw-sd/issues/458)) ([0d5277d](https://github.com/promhippie/prometheus-scw-sd/commit/0d5277d0d1eb0be914b059e25433ad0d8d90fff9))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9038d02](https://github.com/promhippie/prometheus-scw-sd/commit/9038d022ca9e0a635ea8eadae07fe846139d93c9))
+
 ## [2.9.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.8.0...v2.9.0) (2026-06-01)
 
 ### Features
