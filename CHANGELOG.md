@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.10.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.9.1...v2.10.0) (2026-06-15)
+
+### Features
+
+* **minor:** update alpine docker tag to v3.24 ([#459](https://github.com/promhippie/prometheus-scw-sd/issues/459)) ([1e9eac5](https://github.com/promhippie/prometheus-scw-sd/commit/1e9eac513f742490aac279f5bb111453f6cee4eb))
+* **minor:** update module github.com/urfave/cli/v3 to v3.10.0 ([#464](https://github.com/promhippie/prometheus-scw-sd/issues/464)) ([77113c3](https://github.com/promhippie/prometheus-scw-sd/commit/77113c3a9149f3bd7854e6a429de098132776a79))
+
+### Bugfixes
+
+* **deps:** update docker digests ([5d8b5d1](https://github.com/promhippie/prometheus-scw-sd/commit/5d8b5d15ab7e592dd1fb945dcaccb5d21da5aa8f))
+* **deps:** update docker digests ([f70f282](https://github.com/promhippie/prometheus-scw-sd/commit/f70f28207ce2bd145783df93c61effcec572d5be))
+* **deps:** update docker digests ([#463](https://github.com/promhippie/prometheus-scw-sd/issues/463)) ([ba3de3c](https://github.com/promhippie/prometheus-scw-sd/commit/ba3de3c00d6e70ada72456a85c71b882fc425e37))
+* **patch:** update module github.com/urfave/cli/v3 to v3.9.1 ([#461](https://github.com/promhippie/prometheus-scw-sd/issues/461)) ([af732db](https://github.com/promhippie/prometheus-scw-sd/commit/af732dbdc18478f43b064f7ba5634e3e0e79b569))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([aa333b8](https://github.com/promhippie/prometheus-scw-sd/commit/aa333b8ef441366721f783096988cf55fe88efff))
+
 ## [2.9.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.9.0...v2.9.1) (2026-06-08)
 
 ### Bugfixes
