@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.11.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.10.0...v2.11.0) (2026-06-22)
+
+### Features
+
+* **minor:** update module github.com/prometheus/common to v0.69.0 ([#468](https://github.com/promhippie/prometheus-scw-sd/issues/468)) ([f2eb3d6](https://github.com/promhippie/prometheus-scw-sd/commit/f2eb3d64480abde13d8f20c7349c503aacb4b985))
+
+### Bugfixes
+
+* **deps:** update docker digests ([#465](https://github.com/promhippie/prometheus-scw-sd/issues/465)) ([79a98e8](https://github.com/promhippie/prometheus-scw-sd/commit/79a98e886b6fbf5f4290813038073f1b0aea5467))
+* **deps:** update docker digests ([#466](https://github.com/promhippie/prometheus-scw-sd/issues/466)) ([0f97c52](https://github.com/promhippie/prometheus-scw-sd/commit/0f97c52f0a45ea3b9c7b631908a2e03d4d1f6795))
+* **deps:** update docker digests ([#467](https://github.com/promhippie/prometheus-scw-sd/issues/467)) ([d462920](https://github.com/promhippie/prometheus-scw-sd/commit/d462920314484c501140725b0d19dff014abfc16))
+* **deps:** update docker digests ([#469](https://github.com/promhippie/prometheus-scw-sd/issues/469)) ([432e690](https://github.com/promhippie/prometheus-scw-sd/commit/432e690c7fc16e48a5c719fdf0da5572214806cc))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([6c5fa0d](https://github.com/promhippie/prometheus-scw-sd/commit/6c5fa0d62141b21cc3e810216b21c51eea8c0a17))
+
 ## [2.10.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.9.1...v2.10.0) (2026-06-15)
 
 ### Features
