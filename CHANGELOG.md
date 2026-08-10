@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.15.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.14.1...v2.15.0) (2026-08-10)
+
+### Features
+
+* **minor:** update dependency github:cloudsmith-io/cloudsmith-cli to v1.21.0 ([#488](https://github.com/promhippie/prometheus-scw-sd/issues/488)) ([8e26d74](https://github.com/promhippie/prometheus-scw-sd/commit/8e26d74264aa08a5d2ffd8575f25b75d64a53669))
+* **minor:** update dependency golangci-lint to v2.12.2 ([#489](https://github.com/promhippie/prometheus-scw-sd/issues/489)) ([fe84727](https://github.com/promhippie/prometheus-scw-sd/commit/fe84727d67dc9d1428755640b4dadd8aef54f4f2))
+* restructure repo and build processes ([38ac34a](https://github.com/promhippie/prometheus-scw-sd/commit/38ac34a282f295432397fda124795ed747afd3be))
+* upgrade prometheus library and change adapter call ([8bde233](https://github.com/promhippie/prometheus-scw-sd/commit/8bde233f0529e4cefdb362ecdc6d38590ec0cc9d))
+
+### Bugfixes
+
+* **patch:** update dependency cosign to v3.1.3 ([#490](https://github.com/promhippie/prometheus-scw-sd/issues/490)) ([9897515](https://github.com/promhippie/prometheus-scw-sd/commit/9897515c9d7698d3e3ff5ae4b4a18e2298094283))
+
 ## [2.14.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.14.0...v2.14.1) (2026-08-03)
 
 ## [2.14.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.13.0...v2.14.0) (2026-07-27)
