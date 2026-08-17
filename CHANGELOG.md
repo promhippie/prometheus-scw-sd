@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.16.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.15.0...v2.16.0) (2026-08-17)
+
+### Features
+
+* **minor:** update dependency github:cloudsmith-io/cloudsmith-cli to v1.22.0 ([#493](https://github.com/promhippie/prometheus-scw-sd/issues/493)) ([1de46b0](https://github.com/promhippie/prometheus-scw-sd/commit/1de46b06048be311a83d3963447e5fc0b784996f))
+* **minor:** update dependency hugo-extended to v0.165.0 ([#494](https://github.com/promhippie/prometheus-scw-sd/issues/494)) ([cd4fe68](https://github.com/promhippie/prometheus-scw-sd/commit/cd4fe68496d898ab7df8aa11210e05be33aad671))
+* **minor:** update module github.com/urfave/cli/v3 to v3.11.0 ([#498](https://github.com/promhippie/prometheus-scw-sd/issues/498)) ([7297371](https://github.com/promhippie/prometheus-scw-sd/commit/7297371043b78e886c355488998ea54db6ab55b8))
+
+### Bugfixes
+
+* **deps:** update golang:1.26.6-alpine docker digest to 3889b42 ([#497](https://github.com/promhippie/prometheus-scw-sd/issues/497)) ([b6f8355](https://github.com/promhippie/prometheus-scw-sd/commit/b6f83553eebe21fb16710359a0e60eeff7cb22a4))
+* **patch:** update dependency go to v1.26.6 ([#495](https://github.com/promhippie/prometheus-scw-sd/issues/495)) ([0993db3](https://github.com/promhippie/prometheus-scw-sd/commit/0993db3d4598f85d784fd4cb030d9314bea5636a))
+* **patch:** update dependency pre-commit to v4.6.2 ([#492](https://github.com/promhippie/prometheus-scw-sd/issues/492)) ([c6b533f](https://github.com/promhippie/prometheus-scw-sd/commit/c6b533f02377b641c2d52fe7fe7a9c25d2a1fa6b))
+* **patch:** update golang docker tag to v1.26.6 ([#496](https://github.com/promhippie/prometheus-scw-sd/issues/496)) ([0107dde](https://github.com/promhippie/prometheus-scw-sd/commit/0107dde161e1b5f153584973f60ef5331a4ceb7a))
+
 ## [2.15.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.14.1...v2.15.0) (2026-08-10)
 
 ### Features
