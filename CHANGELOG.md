@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.17.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.16.0...v2.17.0) (2026-08-24)
+
+### Features
+
+* **minor:** update dependency github:cloudsmith-io/cloudsmith-cli to v1.24.0 ([#500](https://github.com/promhippie/prometheus-scw-sd/issues/500)) ([dd3f364](https://github.com/promhippie/prometheus-scw-sd/commit/dd3f3644b624378a80b0ad745b7099ab2c6c0da9))
+* **minor:** update dependency golangci-lint to v2.13.0 ([#504](https://github.com/promhippie/prometheus-scw-sd/issues/504)) ([83a7580](https://github.com/promhippie/prometheus-scw-sd/commit/83a7580654db283351bf847978da09dfca7e7ec0))
+* **minor:** update dependency task to v3.53.1 ([#501](https://github.com/promhippie/prometheus-scw-sd/issues/501)) ([1d3d982](https://github.com/promhippie/prometheus-scw-sd/commit/1d3d98243cc340dd882fbc430acbb8d653f38176))
+* **minor:** update golang docker tag to v1.27.0 ([#505](https://github.com/promhippie/prometheus-scw-sd/issues/505)) ([9351158](https://github.com/promhippie/prometheus-scw-sd/commit/935115855199782098ac6e35a0679959447ecd1e))
+* **minor:** update module github.com/stretchr/testify to v1.12.0 ([#499](https://github.com/promhippie/prometheus-scw-sd/issues/499)) ([697b025](https://github.com/promhippie/prometheus-scw-sd/commit/697b025d3e83fa106a03ff37d359968c2780b4b2))
+
+### Bugfixes
+
+* **patch:** update dependency golangci-lint to v2.13.1 ([#507](https://github.com/promhippie/prometheus-scw-sd/issues/507)) ([adfff9b](https://github.com/promhippie/prometheus-scw-sd/commit/adfff9b70fa296b1aca684094b223521d44caf8e))
+* **patch:** update module github.com/go-chi/chi/v5 to v5.3.2 ([#506](https://github.com/promhippie/prometheus-scw-sd/issues/506)) ([4cb710a](https://github.com/promhippie/prometheus-scw-sd/commit/4cb710aca8392ff59263673eb2a5a038d523c51f))
+* **patch:** update module github.com/stretchr/testify to v1.12.1 ([#502](https://github.com/promhippie/prometheus-scw-sd/issues/502)) ([36564b8](https://github.com/promhippie/prometheus-scw-sd/commit/36564b837b65d33d39fab7be8337ad27aad054f9))
+
 ## [2.16.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.15.0...v2.16.0) (2026-08-17)
 
 ### Features
