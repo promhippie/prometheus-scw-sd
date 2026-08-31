@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.18.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.17.0...v2.18.0) (2026-08-31)
+
+### Features
+
+* **minor:** update dependency github:cloudsmith-io/cloudsmith-cli to v1.25.0 ([#510](https://github.com/promhippie/prometheus-scw-sd/issues/510)) ([e95275b](https://github.com/promhippie/prometheus-scw-sd/commit/e95275b6e50d2c4a222f2751c5d77a00c5474131))
+* **minor:** update dependency github:cloudsmith-io/cloudsmith-cli to v1.26.0 ([#512](https://github.com/promhippie/prometheus-scw-sd/issues/512)) ([85ae2c7](https://github.com/promhippie/prometheus-scw-sd/commit/85ae2c72ff9e8cbf45153fc7e1ffe07ab6f5cdb8))
+* **minor:** update dependency go to v1.27.0 ([#503](https://github.com/promhippie/prometheus-scw-sd/issues/503)) ([e016d3b](https://github.com/promhippie/prometheus-scw-sd/commit/e016d3b651ba5746cea81071fc5250962f06097f))
+* **minor:** update dependency goreleaser to v2.18.0 ([#508](https://github.com/promhippie/prometheus-scw-sd/issues/508)) ([c9cd2b7](https://github.com/promhippie/prometheus-scw-sd/commit/c9cd2b7142c0700bda5f59169acc56090d5aac7e))
+* **minor:** update module github.com/prometheus/common to v0.71.0 ([#515](https://github.com/promhippie/prometheus-scw-sd/issues/515)) ([993ce8c](https://github.com/promhippie/prometheus-scw-sd/commit/993ce8cbc164fac73640ff7d282b30669031860d))
+* **minor:** update module github.com/prometheus/exporter-toolkit to v0.19.0 ([#511](https://github.com/promhippie/prometheus-scw-sd/issues/511)) ([4e8ce8a](https://github.com/promhippie/prometheus-scw-sd/commit/4e8ce8a05f17d93dea362fb0331a13cbcbc04bbf))
+
+### Bugfixes
+
+* **patch:** update dependency golangci-lint to v2.13.2 ([#513](https://github.com/promhippie/prometheus-scw-sd/issues/513)) ([5393a47](https://github.com/promhippie/prometheus-scw-sd/commit/5393a47ceda9d7d8942f86ca28776472bd68251b))
+
 ## [2.17.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.16.0...v2.17.0) (2026-08-24)
 
 ### Features
