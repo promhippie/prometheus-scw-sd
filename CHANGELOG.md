@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.18.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.18.0...v2.18.1) (2026-09-07)
+
+### Bugfixes
+
+* **deps:** update golang:1.27.1-alpine docker digest to cf6fca6 ([#518](https://github.com/promhippie/prometheus-scw-sd/issues/518)) ([a84388c](https://github.com/promhippie/prometheus-scw-sd/commit/a84388c325ce19504e7b9503c5112dd28745f694))
+* **patch:** update dependency go to v1.27.1 ([#516](https://github.com/promhippie/prometheus-scw-sd/issues/516)) ([fa3d00f](https://github.com/promhippie/prometheus-scw-sd/commit/fa3d00f019cd6da328f74280e2d5af330d221af8))
+* **patch:** update dependency goreleaser to v2.18.1 ([#519](https://github.com/promhippie/prometheus-scw-sd/issues/519)) ([29f0777](https://github.com/promhippie/prometheus-scw-sd/commit/29f07775404d086341183b4d38e443f964b8ad99))
+* **patch:** update golang docker tag to v1.27.1 ([#517](https://github.com/promhippie/prometheus-scw-sd/issues/517)) ([85d11e4](https://github.com/promhippie/prometheus-scw-sd/commit/85d11e4a3adae1f0329e1f5cb498a3ce16722315))
+
 ## [2.18.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.17.0...v2.18.0) (2026-08-31)
 
 ### Features
