@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.20.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.19.0...v2.20.0) (2026-09-28)
+
+### Features
+
+* **minor:** update module github.com/prometheus/common to v0.72.0 ([#534](https://github.com/promhippie/prometheus-scw-sd/issues/534)) ([e520429](https://github.com/promhippie/prometheus-scw-sd/commit/e520429c556d5b1625415aa270c4f74572d8492b))
+* **minor:** update module github.com/prometheus/exporter-toolkit to v0.20.0 ([#530](https://github.com/promhippie/prometheus-scw-sd/issues/530)) ([f1bcdb4](https://github.com/promhippie/prometheus-scw-sd/commit/f1bcdb43222408422e5f2cf4b1cef8b862b31b64))
+
+### Bugfixes
+
+* **deps:** update golang:1.27.1-alpine docker digest to 8a5910f ([#529](https://github.com/promhippie/prometheus-scw-sd/issues/529)) ([e2d48fd](https://github.com/promhippie/prometheus-scw-sd/commit/e2d48fde973a6db5f40c3e750109fedb42a94316))
+
 ## [2.19.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.18.1...v2.19.0) (2026-09-21)
 
 ### Features
