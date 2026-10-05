@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.21.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.20.0...v2.21.0) (2026-10-05)
+
+### Features
+
+* **minor:** update module github.com/urfave/cli/v3 to v3.14.0 ([#538](https://github.com/promhippie/prometheus-scw-sd/issues/538)) ([71c2c0f](https://github.com/promhippie/prometheus-scw-sd/commit/71c2c0f60633f4db9fa29f84b1e3f640e98480bb))
+
 ## [2.20.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.19.0...v2.20.0) (2026-09-28)
 
 ### Features
