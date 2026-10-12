@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.22.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.21.0...v2.22.0) (2026-10-12)
+
+### Features
+
+* **minor:** update module github.com/go-chi/chi/v5 to v5.4.0 ([#549](https://github.com/promhippie/prometheus-scw-sd/issues/549)) ([e0c968e](https://github.com/promhippie/prometheus-scw-sd/commit/e0c968e525ac9f4301317713b740ea01af32d55b))
+* **minor:** update module github.com/prometheus/client_golang to v1.25.0 ([#542](https://github.com/promhippie/prometheus-scw-sd/issues/542)) ([9c91c13](https://github.com/promhippie/prometheus-scw-sd/commit/9c91c13dc36cc59877bb39bf600f2e08b0fb4e2c))
+* **minor:** update module github.com/scaleway/scaleway-sdk-go to v1.38.0 ([#540](https://github.com/promhippie/prometheus-scw-sd/issues/540)) ([def0929](https://github.com/promhippie/prometheus-scw-sd/commit/def0929869cd438ed60b328677273bd9793d4586))
+* **minor:** update module github.com/scaleway/scaleway-sdk-go to v1.39.0 ([#548](https://github.com/promhippie/prometheus-scw-sd/issues/548)) ([9730853](https://github.com/promhippie/prometheus-scw-sd/commit/973085357f4e77cbe25971d665b9ebbd82b984f4))
+
+### Bugfixes
+
+* **deps:** update golang:1.27.2-alpine docker digest to f92b6ef ([#546](https://github.com/promhippie/prometheus-scw-sd/issues/546)) ([b3d065d](https://github.com/promhippie/prometheus-scw-sd/commit/b3d065d69eb0e6285e3c1e1d783b6a742945ad6a))
+* **patch:** update golang docker tag to v1.27.2 ([#544](https://github.com/promhippie/prometheus-scw-sd/issues/544)) ([cda4a59](https://github.com/promhippie/prometheus-scw-sd/commit/cda4a59f7b402736ac47a27e97a56a870fa3e419))
+* **patch:** update module github.com/prometheus/common to v0.72.1 ([#547](https://github.com/promhippie/prometheus-scw-sd/issues/547)) ([9f66cc5](https://github.com/promhippie/prometheus-scw-sd/commit/9f66cc5d0a27d05855ba0c6bee625f8590c20bec))
+
 ## [2.21.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.20.0...v2.21.0) (2026-10-05)
 
 ### Features
