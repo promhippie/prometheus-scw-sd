@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.23.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.22.0...v2.23.0) (2026-10-19)
+
+### Features
+
+* **minor:** update module github.com/go-chi/chi/v5 to v5.5.0 ([#552](https://github.com/promhippie/prometheus-scw-sd/issues/552)) ([7171ae4](https://github.com/promhippie/prometheus-scw-sd/commit/7171ae44660010fe047c3ee6fe7484ce85a416d5))
+
 ## [2.22.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.21.0...v2.22.0) (2026-10-12)
 
 ### Features
