@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.23.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.23.0...v2.23.1) (2026-10-26)
+
+### Bugfixes
+
+* **deps:** update alpine:3.24 docker digest to 71e9b7b ([#562](https://github.com/promhippie/prometheus-scw-sd/issues/562)) ([95224a7](https://github.com/promhippie/prometheus-scw-sd/commit/95224a7964545537b6a7c178dd873ba86da352d9))
+* **deps:** update alpine:3.24 docker digest to be26560 ([#566](https://github.com/promhippie/prometheus-scw-sd/issues/566)) ([beff50d](https://github.com/promhippie/prometheus-scw-sd/commit/beff50d7ae21bf80c9a4a58200efe932f2212c4e))
+* **deps:** update docker digests ([#561](https://github.com/promhippie/prometheus-scw-sd/issues/561)) ([61ccce1](https://github.com/promhippie/prometheus-scw-sd/commit/61ccce1911cb2262d4c15f5636c73bbd772ab9ed))
+* **deps:** update golang:1.27.3-alpine docker digest to b8c9b82 ([#563](https://github.com/promhippie/prometheus-scw-sd/issues/563)) ([9a2685c](https://github.com/promhippie/prometheus-scw-sd/commit/9a2685c4791cff3202b50f1fa9fedba97ea9a7c5))
+* **patch:** update golang docker tag to v1.27.3 ([#559](https://github.com/promhippie/prometheus-scw-sd/issues/559)) ([ef6bf0f](https://github.com/promhippie/prometheus-scw-sd/commit/ef6bf0f1a4a57ad12580bcabaa6b17db79f0ebba))
+
 ## [2.23.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.22.0...v2.23.0) (2026-10-19)
 
 ### Features
