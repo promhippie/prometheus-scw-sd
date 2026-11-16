@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.25.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.24.1...v2.25.0) (2026-11-16)
+
+### Features
+
+* **minor:** update module github.com/prometheus/common to v0.74.0 ([#583](https://github.com/promhippie/prometheus-scw-sd/issues/583)) ([5eb0760](https://github.com/promhippie/prometheus-scw-sd/commit/5eb07601cefca3d5d5b2183f8a6943bfb7dcd6e5))
+
+### Bugfixes
+
+* **patch:** update golang docker tag to v1.27.4 ([#579](https://github.com/promhippie/prometheus-scw-sd/issues/579)) ([f122bca](https://github.com/promhippie/prometheus-scw-sd/commit/f122bcaf90c75203cdc6a48cc1ea1aaba52d3508))
+
 ## [2.24.1](https://github.com/promhippie/prometheus-scw-sd/compare/v2.24.0...v2.24.1) (2026-11-09)
 
 ### Bugfixes
