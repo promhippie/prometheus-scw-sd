@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.26.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.25.0...v2.26.0) (2026-11-23)
+
+### Features
+
+* **minor:** update module github.com/prometheus/exporter-toolkit to v0.21.0 ([#590](https://github.com/promhippie/prometheus-scw-sd/issues/590)) ([b6d1e5b](https://github.com/promhippie/prometheus-scw-sd/commit/b6d1e5b9d5a7de1bfff62baed13dc63f5763eb70))
+* **minor:** update module github.com/scaleway/scaleway-sdk-go to v1.40.0 ([#591](https://github.com/promhippie/prometheus-scw-sd/issues/591)) ([6058ba6](https://github.com/promhippie/prometheus-scw-sd/commit/6058ba668282e58fbf98704b87cad8239605c0c1))
+* switch to plain hugo and resolve deprecations ([31bbaa5](https://github.com/promhippie/prometheus-scw-sd/commit/31bbaa56585109e8e27af6091b26c1760267213b))
+
+### Bugfixes
+
+* **deps:** update golang:1.27.4-alpine docker digest to 70bd7dd ([#585](https://github.com/promhippie/prometheus-scw-sd/issues/585)) ([b599189](https://github.com/promhippie/prometheus-scw-sd/commit/b5991895a4d4cff1d264a3c7461c3a9c61ecdd8d))
+
 ## [2.25.0](https://github.com/promhippie/prometheus-scw-sd/compare/v2.24.1...v2.25.0) (2026-11-16)
 
 ### Features
